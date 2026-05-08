@@ -1,0 +1,43 @@
+Case 1: Photos/video showcasing multiple activities in one post
+    Soltuion 1: Place post in multple categories
+    Soltuion 2: Multiple activities category
+    Soltuion 3: Place it in one category only
+
+Case 2: user tries to upload a video that's already been uploaded
+    Solution 1: Output message -- "Video already uploaded in <section>"
+
+Case 3: Place with no address, only the city
+    Solution 1: Do not display on the map
+
+FEATURES TO ADD:
+Filters
+    Food
+    Nature
+    Nightlife
+
+TikTok embed
+    Click marker → show TikTok link
+
+Heatmaps
+    Show trending areas
+
+Clustering
+    Group nearby places
+
+Ranking Algorithm
+    Rank places using:
+        views
+        likes
+        shares
+        recency
+        frequency mentioned
+
+    Then:
+        “Trending in Toronto”
+        “Hidden gems”
+        “Most viral ramen spots”
+
+
+AI Summaries with LLMs - Generated from multiple TikToks.
+    Example: "This cozy Japanese cafe is known for..."
+
