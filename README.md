@@ -1,1 +1,3 @@
-savable
+- save your tiktok and insta posts in one location instead of losing them in your dms.
+- specifically for food spots, nature, shopping, music, and attractions. you may also add custom categories.
+- automatically detects the address of the location mentioned in a post, then displays it on a map.
