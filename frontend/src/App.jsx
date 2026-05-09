@@ -173,7 +173,7 @@ export default function App() {
               <circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
-          <span style={{ fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>savable</span>
+          <span style={{ fontFamily:  "'GFS Didot', serif", fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>Savable</span>
         </div>
 
         {/* Nav links */}
@@ -191,7 +191,7 @@ export default function App() {
           ))}
         </div>
 
-        {/* Dark mode toggle — replaces Settings */}
+        {/* Dark mode toggle */}
         <button
           onClick={() => setDarkMode(d => !d)}
           style={{
