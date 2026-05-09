@@ -242,7 +242,17 @@ export default function Discover({ folders, onFolderClick, onAddFolder, allPosts
         <div style={{ marginBottom: "28px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div>
             <p style={{ fontFamily: "inherit", fontSize: "11px", fontWeight: "600", color: theme.textMuted, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Collections</p>
-            <h2 style={{ fontFamily: "inherit", fontSize: "26px", fontWeight: "800", color: theme.text, margin: 0, letterSpacing: "-0.6px" }}>Discover</h2>
+            <h2 style={{ 
+                  fontFamily: "'GFS Didot', serif",
+                  fontStyle: "normal",
+                  fontSize: "40px", 
+                  fontWeight: "400",   
+                  color: theme.text, 
+                  margin: "0 0 14px", 
+                  letterSpacing: "0px",     
+                  lineHeight: 1.2 
+                }}>Discover
+            </h2>
             {isManageMode && (
               <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: "4px 0 0" }}>
                 {selectedFolderIds.length > 0

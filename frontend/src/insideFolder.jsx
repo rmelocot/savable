@@ -415,7 +415,18 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
                     style={{ fontFamily: "inherit", fontSize: "24px", fontWeight: "800", color: theme.text, background: theme.surface, border: `1px solid ${theme.text}`, borderRadius: "8px", padding: "2px 10px", outline: "none", letterSpacing: "-0.5px", maxWidth: "300px" }}
                   />
                 ) : (
-                  <h2 style={{ fontFamily: "inherit", fontSize: "24px", fontWeight: "800", color: theme.text, margin: 0, letterSpacing: "-0.5px" }}>
+                  
+
+                  <h2 style={{ 
+                  fontFamily: "'GFS Didot', serif",
+                  fontStyle: "normal",
+                  fontSize: "40px", 
+                  fontWeight: "400",        
+                  color: theme.text, 
+                  margin: "0 0 14px", 
+                  letterSpacing: "0px",     
+                  lineHeight: 1.2 
+                }}>
                     {folderName}
                   </h2>
                 )}
