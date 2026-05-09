@@ -41,3 +41,9 @@ Ranking Algorithm
 AI Summaries with LLMs - Generated from multiple TikToks.
     Example: "This cozy Japanese cafe is known for..."
 
+Customize Folders
+    Allow users to create custom folders
+    Allow users to move videos between folders
+
+Duplication
+    Allow users to have a post in multiple folders, but ensure a post can't be added to the same folder more than once

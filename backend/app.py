@@ -9,7 +9,7 @@ CORS(app)
 def places():
 
     with open(
-        "data/cleaned_places.json",
+        "backend/data/cleaned_places.json",
         "r",
         encoding="utf-8"
     ) as f:

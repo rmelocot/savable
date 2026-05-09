@@ -1,0 +1,16 @@
+/* postDetail.css */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f7f9fc; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+::selection { background: rgba(11,163,96,0.15); color: #0d1b2a; }
+
+button, a, input, textarea { transition: all 0.15s ease; }
+textarea { resize: vertical; }
+iframe { display: block; }

@@ -71,16 +71,6 @@ CATEGORY_KEYWORDS = {
         "marketplace"
     ],
 
-    "nightlife": [
-        "bar",
-        "club",
-        "nightlife",
-        "party",
-        "pub",
-        "cocktail",
-        "rooftop"
-    ],
-
     "nature": [
         "park",
         "beach",
@@ -92,6 +82,30 @@ CATEGORY_KEYWORDS = {
         "rainforest",
         "tree",
         "blossom"
+    ],
+
+    "attractions": [
+        "museum",
+        "gallery",
+        "landmark",
+        "monument",
+        "tourist",
+        "attraction",
+        "aquarium",
+        "zoo",
+        "observatory",
+        "exhibit",
+        "exhibition",
+        "amusement",
+        "wonderland",
+        "amusementpark",
+        "carnival",
+        "cne"
+    ],
+
+    "music": [
+        "festival",
+        "concert",
     ]
 }
 

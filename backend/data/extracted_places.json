@@ -128,9 +128,69 @@
             "Weno"
         ],
         "addresses": [],
-        "enriched_address": "Unholy Donuts, 598, Bay Street, Yonge-Bay Corridor, University—Rosedale, Toronto, Golden Horseshoe, Ontario, M5G 1C9, Canada",
+        "enriched_address": "Unholy Donuts, 236-240, Brown's Line, Alderwood, Etobicoke—Lakeshore, Etobicoke, Toronto, Golden Horseshoe, Ontario, M8W 3T4, Canada",
         "enriched_place_name": "Unholy Donuts",
-        "latitude": 43.6559011,
-        "longitude": -79.3839884
+        "latitude": 43.598113,
+        "longitude": -79.5440556
+    },
+    {
+        "tiktok_id": "7633083802495077640",
+        "tiktok_url": "https://www.tiktok.com/@victoriasamson/video/7633083802495077640?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": null,
+        "original_text": "shop with me at the new @Aritzia 🛍️💛 #shoppingvlog #aritzia ",
+        "category": "shopping",
+        "place_names": [
+            "Aritzia",
+            "the Eaton Centre"
+        ],
+        "addresses": [],
+        "enriched_address": "Aritzia, 100, Bayshore Drive, Fairfield Heights, Bay, Nepean, Ottawa, Eastern Ontario, Ontario, K2B 6M7, Canada",
+        "enriched_place_name": "Aritzia",
+        "latitude": 45.3475362,
+        "longitude": -75.806519
+    },
+    {
+        "tiktok_id": "7540808846684507399",
+        "tiktok_url": "https://www.tiktok.com/@bonbonnmon/video/7540808846684507399?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Toronto",
+        "original_text": "@Unholy Donuts Canada please come to Vancouver! These were amazing ❤️ #donuts #torontoeats #toronto ",
+        "category": "food",
+        "place_names": [
+            "Unholy Donuts Canada",
+            "Weno"
+        ],
+        "addresses": [],
+        "enriched_address": "Unholy Donuts, 236-240, Brown's Line, Alderwood, Etobicoke—Lakeshore, Etobicoke, Toronto, Golden Horseshoe, Ontario, M8W 3T4, Canada",
+        "enriched_place_name": "Unholy Donuts",
+        "latitude": 43.598113,
+        "longitude": -79.5440556
+    },
+    {
+        "tiktok_id": "7524319669566688568",
+        "tiktok_url": "https://www.tiktok.com/@manviirr/video/7524319669566688568?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Toronto",
+        "original_text": "🎟️ toronto summers >>  #toronto #torontotiktok #cne #cne2025 #carnival #torontosummer #thingstodo #thingstodotoronto #2025summer #summervibes #amusementpark #explorepage #torontolife   #countyfair",
+        "category": "attractions",
+        "place_names": [],
+        "addresses": [],
+        "enriched_address": null,
+        "enriched_place_name": null,
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "tiktok_id": "7554942391405251852",
+        "tiktok_url": "https://www.tiktok.com/@seantidope.exe/video/7554942391405251852?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Toronto",
+        "original_text": "@DanielCaesar Toronto Pop up Sept 27, 2025 Always Live #danielcaesar #always #concert #toronto ",
+        "category": "music",
+        "place_names": [],
+        "addresses": [
+            "2025 Alway"
+        ],
+        "enriched_address": "Alway, Newport, Cymru / Wales, United Kingdom",
+        "enriched_place_name": "Alway",
+        "latitude": 51.5857813,
+        "longitude": -2.945138
     }
 ]
