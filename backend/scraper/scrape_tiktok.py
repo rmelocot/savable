@@ -5,7 +5,6 @@ import json
 
 import os
 
-# LIST OF TIKTOK URLS
 BASE_DIR = os.path.dirname(__file__)
 
 URL_FILE = os.path.join(
@@ -34,10 +33,11 @@ if os.path.exists(SCRAPED_FILE):
         existing_posts = json.load(f)
 
     existing_urls = {
-        post["url"]
+        post.get("url") or post.get("tiktok_url", "")
         for post in existing_posts
     }
 
+# Skip anything we've already scraped.
 new_urls = [
     url for url in urls
     if url not in existing_urls
@@ -74,7 +74,7 @@ async def scrape_post(browser, url):
 
     default_scope = data["__DEFAULT_SCOPE__"]
 
-    # DETECT POST TYPE
+    # Distinguish video vs. photo carousels — they live under different scope keys.
     if "webapp.video-detail" in default_scope:
 
         print("VIDEO POST")
@@ -98,9 +98,7 @@ async def scrape_post(browser, url):
     item = post_data["itemInfo"]["itemStruct"]
     print(item["video"].keys())
 
-    # =========================
-    # EXTRACT TRANSCRIPT
-    # =========================
+    # --- Transcript extraction ---
     transcript_text = ""
 
     subtitle_infos = item.get(
@@ -131,7 +129,6 @@ async def scrape_post(browser, url):
 
                     lines = []
 
-                    # TikTok subtitle structure
                     for cue in subtitle_json.get(
                         "utterances",
                         []
@@ -148,13 +145,14 @@ async def scrape_post(browser, url):
 
                     print("Subtitle parse failed:", e)
 
+                    # Fall back to raw text if JSON parsing fails.
                     transcript_text = subtitle_raw
 
         except Exception as e:
 
             print("Subtitle extraction failed:", e)
 
-    # EXTRACT HASHTAGS
+    # --- Hashtag extraction ---
     hashtags = []
 
     if "textExtra" in item:
@@ -164,7 +162,21 @@ async def scrape_post(browser, url):
             if tag.get("hashtagName"):
                 hashtags.append(tag["hashtagName"])
 
-    # CREATE DICTIONARY
+    # --- POI extraction ---
+    # item["poi"] is only present when the creator explicitly pinned a location.
+    # It's the most reliable source we have — prefer it over anything inferred from text.
+    poi_data = None
+    raw_poi = item.get("poi")
+    if raw_poi:
+        poi_name    = raw_poi.get("name", "").strip()
+        poi_address = raw_poi.get("address", "").strip()
+        if poi_name or poi_address:
+            poi_data = {
+                "name":    poi_name,
+                "address": poi_address,
+            }
+            print(f"  POI found: {poi_data}")
+
     post_info = {
 
         "type": post_type,
@@ -197,7 +209,9 @@ async def scrape_post(browser, url):
         "music": {
             "title": item["music"]["title"],
             "artist": item["music"]["authorName"]
-        }
+        },
+
+        "poi": poi_data,
     }
     await page.close()
     return post_info
@@ -233,7 +247,6 @@ async def main():
 
                 all_posts.append(result)
 
-        # SAVE ALL POSTS
         existing_posts.extend(all_posts)
 
         with open(SCRAPED_FILE, "w", encoding="utf-8") as f:

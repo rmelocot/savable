@@ -47,3 +47,13 @@ Customize Folders
 
 Duplication
     Allow users to have a post in multiple folders, but ensure a post can't be added to the same folder more than once
+
+
+
+Folder inside a folder
+
+Filters
+- Oldest to newly posted
+- Most liked
+- Most enters
+- search bar
