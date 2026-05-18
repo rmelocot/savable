@@ -84,7 +84,7 @@ function HalfStarRating({ rating, onChange, theme }) {
         const fill = display >= star ? "full" : display >= star - 0.5 ? "half" : "empty";
         return (
           <div key={star} onMouseMove={e => handleMouseMove(e, star)} onClick={e => handleClick(e, star)}
-            style={{ cursor: "pointer", transition: "transform 0.15s", }}
+            style={{ cursor: "pointer", transition: "transform 0.15s" }}
             onMouseEnter={e => e.currentTarget.style.transform = "scale(1.1)"}
             onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}>
             <StarSvg fill={fill} size={26} theme={theme} />
@@ -186,7 +186,7 @@ function PhotoGallery({ photos, onPhotosChange, theme }) {
   );
 }
 
-export default function PostDetail({ onBack, data, setData, allFolders, theme }) {
+export default function PostDetail({ onBack, onViewOnMap, data, setData, allFolders, theme }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { fadeUp, fadeRight } = useEntryAnimation();
@@ -209,6 +209,7 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
   const isTikTok = !!(data.externalUrls?.tiktok?.includes("tiktok.com"));
   const isInstagram = !!(data.externalUrls?.insta?.includes("instagram.com"));
   const isDark = theme.bg === "#111111";
+  const hasLocation = !!(data.latitude && data.longitude) || !!(data.address);
 
   const getEmbedUrl = () => {
     const tt = data.externalUrls?.tiktok;
@@ -256,7 +257,7 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
 
       <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "28px 24px 80px" }}>
 
-        {/* Back button — fades in first */}
+        {/* Back button */}
         <div style={fadeUp(0)}>
           <button onClick={onBack} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", color: theme.textMuted, fontFamily: "inherit", fontSize: "11px", fontWeight: "700", marginBottom: "24px", padding: 0, textTransform: "uppercase", letterSpacing: "0.06em", transition: "color 0.15s" }}
             onMouseEnter={e => e.currentTarget.style.color = theme.text}
@@ -271,7 +272,7 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
           {/* LEFT */}
           <div style={{ flex: 1, minWidth: 0 }}>
 
-            {/* Tags — delay 60ms */}
+            {/* Tags */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", marginBottom: "12px", alignItems: "center", ...fadeUp(60) }}>
               {data.categories.map(cat => (
                 <span key={cat} style={{ background: getCategoryColor(cat), color: "white", padding: "4px 12px", borderRadius: "20px", fontSize: "11px", fontWeight: "700", fontFamily: "inherit" }}>{cat}</span>
@@ -281,28 +282,28 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
               )}
             </div>
 
-            {/* Title — delay 110ms */}
+            {/* Title */}
             <div style={fadeUp(110)}>
               {isEditing ? (
                 <input value={data.title} onChange={e => setData({ ...data, title: e.target.value })} placeholder="Enter title..."
                   style={{ width: "100%", fontFamily: "inherit", fontSize: "24px", fontWeight: "800", color: theme.text, background: theme.surface, border: `1px solid ${theme.text}`, borderRadius: "10px", padding: "10px 14px", marginBottom: "16px", outline: "none", boxSizing: "border-box", letterSpacing: "-0.4px" }} />
               ) : (
-                <h2 style={{ 
+                <h2 style={{
                   fontFamily: "'GFS Didot', serif",
                   fontStyle: "normal",
-                  fontSize: "40px", 
-                  fontWeight: "400",        
-                  color: theme.text, 
-                  margin: "0 0 14px", 
-                  letterSpacing: "0px",    
-                  lineHeight: 1.2 
+                  fontSize: "40px",
+                  fontWeight: "400",
+                  color: theme.text,
+                  margin: "0 0 14px",
+                  letterSpacing: "0px",
+                  lineHeight: 1.2
                 }}>
                   {data.title || <span style={{ color: theme.border }}>Untitled</span>}
                 </h2>
               )}
             </div>
 
-            {/* Toolbar — delay 160ms */}
+            {/* Toolbar */}
             <div style={{ display: "flex", gap: "6px", marginBottom: "18px", ...fadeUp(160) }}>
               <button onClick={() => setIsEditing(!isEditing)}
                 style={{ display: "flex", alignItems: "center", gap: "5px", background: isEditing ? theme.text : theme.surface, color: isEditing ? theme.bg : theme.textMed, border: `1px solid ${theme.border}`, padding: "7px 13px", borderRadius: "9px", fontSize: "12px", fontWeight: "600", cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s" }}>
@@ -320,10 +321,32 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
 
             <div style={{ height: "1px", background: theme.border, marginBottom: "14px", ...fadeUp(200) }} />
 
-            {/* Location — delay 220ms */}
+            {/* Location */}
             <div style={{ ...sectionCard, ...fadeUp(220) }}>
               <p style={labelStyle}>Location</p>
-              <button style={{ background: "none", border: "none", cursor: "pointer", color: theme.text, fontFamily: "inherit", fontSize: "12px", fontWeight: "700", padding: 0, marginBottom: "6px", display: "block", textDecoration: "underline", textUnderlineOffset: "2px" }}>View on map →</button>
+
+              {/* View on map button — only shows if there's an address or coordinates */}
+              {hasLocation && (
+                <button
+                  onClick={() => onViewOnMap?.(data.id)}
+                  style={{
+                    background: "none", border: "none", cursor: "pointer",
+                    color: theme.text, fontFamily: "inherit", fontSize: "12px",
+                    fontWeight: "700", padding: 0, marginBottom: "6px",
+                    display: "flex", alignItems: "center", gap: "5px",
+                    textDecoration: "underline", textUnderlineOffset: "2px",
+                    transition: "opacity 0.15s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = "0.6"}
+                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                >
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  View on map →
+                </button>
+              )}
+
               {isEditing ? (
                 <input value={data.address || ""} onChange={e => setData({ ...data, address: e.target.value })} placeholder="Enter address..."
                   style={inputStyle()} onFocus={e => e.target.style.borderColor = theme.text} onBlur={e => e.target.style.borderColor = theme.border} />
@@ -332,19 +355,19 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
               )}
             </div>
 
-            {/* Rating — delay 270ms */}
+            {/* Rating */}
             <div style={{ ...sectionCard, ...fadeUp(270) }}>
               <p style={labelStyle}>Rating</p>
               <HalfStarRating rating={data.rating || 0} onChange={val => setData({ ...data, rating: val })} theme={theme} />
             </div>
 
-            {/* Photos — delay 310ms */}
+            {/* Photos */}
             <div style={{ ...sectionCard, ...fadeUp(310) }}>
               <p style={labelStyle}>Photos</p>
               <PhotoGallery photos={photos} onPhotosChange={handlePhotosChange} theme={theme} />
             </div>
 
-            {/* Notes — delay 350ms */}
+            {/* Notes */}
             <div style={fadeUp(350)}>
               <p style={labelStyle}>Notes</p>
               <textarea placeholder="Write about your experience..." value={data.notes} onChange={e => setData({ ...data, notes: e.target.value })}
@@ -353,7 +376,7 @@ export default function PostDetail({ onBack, data, setData, allFolders, theme })
             </div>
           </div>
 
-          {/* RIGHT — embed card slides in from right, delay 80ms */}
+          {/* RIGHT — embed */}
           <div style={{ width: "400px", flexShrink: 0, ...fadeRight(80) }}>
             <div style={{ background: theme.surface, borderRadius: "14px", overflow: "hidden", border: `1px solid ${theme.border}`, transition: "background 0.25s, border-color 0.25s" }}>
               <div style={{ padding: "12px 16px", borderBottom: `1px solid ${theme.border}`, display: "flex", alignItems: "center", justifyContent: "space-between" }}>

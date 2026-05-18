@@ -103,7 +103,21 @@ function AddPostModal({ isOpen, onClose, onConfirm, theme }) {
       </div>
 
       <button
-        onClick={() => { onConfirm(urls); onClose(); setUrls({ tiktok: "", insta: "" }); }}
+        onClick={async () => {
+          const url = urls.tiktok.trim() || urls.insta.trim();
+          try {
+            await fetch("http://localhost:5050/add-url", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ url }),
+            });
+          } catch (e) {
+            console.error("Failed to save URL:", e);
+          }
+          onConfirm(urls);
+          onClose();
+          setUrls({ tiktok: "", insta: "" });
+        }}
         disabled={!hasTiktok && !hasInsta}
         style={{ width: "100%", background: (hasTiktok || hasInsta) ? theme.text : theme.border, color: (hasTiktok || hasInsta) ? theme.bg : theme.textMuted, border: "none", padding: "11px", borderRadius: "10px", fontSize: "13px", fontWeight: "600", cursor: (hasTiktok || hasInsta) ? "pointer" : "not-allowed", fontFamily: "inherit" }}
       >

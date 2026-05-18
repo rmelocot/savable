@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Discover from "./discover";
 import InsideFolder from "./insideFolder";
 import PostDetail from "./postDetail";
+import Map from "./Map";
 
 export const LIGHT = {
   bg: "#F5F5F3",
@@ -39,6 +40,7 @@ export default function App() {
   const [view, setView] = useState("discover");
   const [currentFolderName, setCurrentFolderName] = useState("");
   const [currentPostId, setCurrentPostId] = useState(null);
+  const [prevView, setPrevView] = useState(null); // so PostDetail knows where to go back
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("savable_dark") === "true");
   const theme = darkMode ? DARK : LIGHT;
 
@@ -76,6 +78,7 @@ export default function App() {
       rating: 0, notes: "", photos: [], externalUrls: urlData
     }]);
     setCurrentPostId(newId);
+    setPrevView("inside");
     setView("detail");
   };
 
@@ -144,14 +147,29 @@ export default function App() {
   };
 
   const navigateToDiscover = () => { setView("discover"); setCurrentFolderName(""); };
-  const handlePostClick = (id) => { setCurrentPostId(id); setView("detail"); };
+  const navigateToMap = () => { setView("map"); };
+
+  const handlePostClick = (id, fromView) => {
+    setCurrentPostId(id);
+    setPrevView(fromView || view);
+    setView("detail");
+  };
+
+  const handlePostDetailBack = () => {
+    setView(prevView || "inside");
+  };
+
   const currentFolder = folders.find(f => f.name === currentFolderName);
 
-  const navLinks = ["Explore", "Discover"];
+  const navLinks = [
+    { label: "Explore", action: navigateToMap, activeView: "map" },
+    { label: "Discover", action: navigateToDiscover, activeView: "discover" },
+  ];
 
   return (
     <div style={{ minHeight: "100vh", background: theme.bg, fontFamily: "'DM Sans', -apple-system, sans-serif", transition: "background 0.25s" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet" />
 
       {/* NAV */}
       <nav style={{
@@ -173,22 +191,32 @@ export default function App() {
               <circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
-          <span style={{ fontFamily:  "'GFS Didot', serif", fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>Savable</span>
+          <span style={{ fontFamily: "'GFS Didot', serif", fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>Savable</span>
         </div>
 
         {/* Nav links */}
         <div style={{ display: "flex", gap: "2px", flex: 1 }}>
-          {navLinks.map(label => (
-            <button
-              key={label}
-              onClick={label === "Discover" ? navigateToDiscover : undefined}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: "5px 12px", borderRadius: "7px", color: theme.textMuted, fontSize: "13px", fontWeight: "600", fontFamily: "inherit", transition: "all 0.12s" }}
-              onMouseEnter={e => { e.currentTarget.style.background = theme.hover; e.currentTarget.style.color = theme.text; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "none"; e.currentTarget.style.color = theme.textMuted; }}
-            >
-              {label}
-            </button>
-          ))}
+          {navLinks.map(({ label, action, activeView }) => {
+            const isActive = view === activeView;
+            return (
+              <button
+                key={label}
+                onClick={action}
+                style={{
+                  background: isActive ? theme.hover : "none",
+                  border: "none", cursor: "pointer",
+                  padding: "5px 12px", borderRadius: "7px",
+                  color: isActive ? theme.text : theme.textMuted,
+                  fontSize: "13px", fontWeight: "600", fontFamily: "inherit",
+                  transition: "all 0.12s",
+                }}
+                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = theme.hover; e.currentTarget.style.color = theme.text; } }}
+                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = "none"; e.currentTarget.style.color = theme.textMuted; } }}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Dark mode toggle */}
@@ -243,7 +271,7 @@ export default function App() {
             folderName={currentFolderName}
             folderColor={currentFolder?.color}
             onBack={navigateToDiscover}
-            onPostClick={handlePostClick}
+            onPostClick={(id) => handlePostClick(id, "inside")}
             onAddPost={createNewPost}
             posts={posts.filter(p => p.categories.includes(currentFolderName))}
             allFolders={folders}
@@ -259,11 +287,23 @@ export default function App() {
         )}
         {view === "detail" && (
           <PostDetail
-            onBack={() => setView("inside")}
+            onBack={handlePostDetailBack}
+            onViewOnMap={(id) => {
+              // Navigate to map, then open the post
+              setView("map");
+            }}
             data={posts.find(p => p.id === currentPostId) || {}}
             setData={handleUpdatePost}
             allFolders={folders}
             theme={theme}
+          />
+        )}
+        {view === "map" && (
+          <Map
+            posts={posts}
+            allFolders={folders}
+            theme={theme}
+            onPostClick={(id) => handlePostClick(id, "map")}
           />
         )}
       </div>
