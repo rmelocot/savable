@@ -6,9 +6,9 @@ A full-stack web app for saving, organizing, and mapping TikTok and Instagram lo
 
 ## The Problem
 
-Me and my friends are constantly sending each other places to visit, food spots, and events over DMs. The problem is that as the conversation keeps going, those posts get buried and lost. Saving them natively doesn't really fix it either — TikTok collections and Instagram saved folders are hard to filter through, and there's no way to quickly see everything on a map. On top of that, I'd sometimes forget which platform I saved something on and waste time searching Instagram for a post that was actually on TikTok.
+Me and my friends are constantly sending each other places to visit, food spots, and events over DMs. The problem is that as the conversation keeps going, those posts get buried and lost. Saving them natively doesn't really fix it either. TikTok collections and Instagram saved folders are hard to filter through, and there's no way to quickly see everything on a map. On top of that, I'd sometimes forget which platform I saved something on and waste time searching Instagram for a post that was actually on TikTok.
 
-I wanted one place to save TikTok and Instagram posts together, organize them into my own folders, and actually be able to find them — on a map, filtered by category, without digging through two separate apps.
+I wanted one place to save TikTok and Instagram posts together, organize them into my own folders, and actually be able to find them on a map, filtered by category, without digging through two separate apps.
 
 ---
 
