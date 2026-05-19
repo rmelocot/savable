@@ -186,9 +186,29 @@ function PhotoGallery({ photos, onPhotosChange, theme }) {
   );
 }
 
+// Geocode an address string using Nominatim (free, no API key)
+async function geocodeAddress(address) {
+  if (!address?.trim()) return null;
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`,
+      { headers: { "Accept-Language": "en" } }
+    );
+    const data = await res.json();
+    if (data?.[0]) {
+      return {
+        latitude: parseFloat(data[0].lat),
+        longitude: parseFloat(data[0].lon),
+      };
+    }
+  } catch (e) {}
+  return null;
+}
+
 export default function PostDetail({ onBack, onViewOnMap, data, setData, allFolders, theme }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isGeocoding, setIsGeocoding] = useState(false);
   const { fadeUp, fadeRight } = useEntryAnimation();
 
   if (!data || !data.categories) {
@@ -227,6 +247,22 @@ export default function PostDetail({ onBack, onViewOnMap, data, setData, allFold
     setData({ ...data, photos: updated });
   };
 
+  // When user finishes editing the address field, geocode it to get coordinates
+  const handleAddressBlur = async (e) => {
+    e.target.style.borderColor = theme.border;
+    const address = e.target.value.trim();
+    if (!address) return;
+    // Only geocode if we don't already have coordinates for this address
+    if (!data.latitude || !data.longitude) {
+      setIsGeocoding(true);
+      const coords = await geocodeAddress(address);
+      setIsGeocoding(false);
+      if (coords) {
+        setData({ ...data, address, latitude: coords.latitude, longitude: coords.longitude });
+      }
+    }
+  };
+
   const sectionCard = {
     background: theme.surface,
     border: `1px solid ${theme.border}`,
@@ -253,6 +289,7 @@ export default function PostDetail({ onBack, onViewOnMap, data, setData, allFold
       <style>{`
         @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0%); } }
         @keyframes slideInLeft  { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
       `}</style>
 
       <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "28px 24px 80px" }}>
@@ -325,7 +362,7 @@ export default function PostDetail({ onBack, onViewOnMap, data, setData, allFold
             <div style={{ ...sectionCard, ...fadeUp(220) }}>
               <p style={labelStyle}>Location</p>
 
-              {/* View on map button — only shows if there's an address or coordinates */}
+              {/* View on map button */}
               {hasLocation && (
                 <button
                   onClick={() => onViewOnMap?.(data.id)}
@@ -348,8 +385,38 @@ export default function PostDetail({ onBack, onViewOnMap, data, setData, allFold
               )}
 
               {isEditing ? (
-                <input value={data.address || ""} onChange={e => setData({ ...data, address: e.target.value })} placeholder="Enter address..."
-                  style={inputStyle()} onFocus={e => e.target.style.borderColor = theme.text} onBlur={e => e.target.style.borderColor = theme.border} />
+                <div style={{ position: "relative" }}>
+                  <input
+                    value={data.address || ""}
+                    onChange={e => setData({ ...data, address: e.target.value })}
+                    placeholder="Enter address..."
+                    style={inputStyle()}
+                    onFocus={e => e.target.style.borderColor = theme.text}
+                    onBlur={handleAddressBlur}
+                  />
+                  {isGeocoding && (
+                    <div style={{
+                      position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
+                      display: "flex", alignItems: "center", gap: "5px",
+                    }}>
+                      <div style={{
+                        width: "12px", height: "12px", borderRadius: "50%",
+                        border: `2px solid ${theme.border}`,
+                        borderTopColor: theme.text,
+                        animation: "spin 0.7s linear infinite",
+                      }} />
+                      <span style={{ fontFamily: "inherit", fontSize: "10px", color: theme.textMuted }}>Locating…</span>
+                    </div>
+                  )}
+                  {data.latitude && data.longitude && (
+                    <p style={{ fontFamily: "inherit", fontSize: "10px", color: theme.textMuted, margin: "5px 0 0", display: "flex", alignItems: "center", gap: "3px" }}>
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      Coordinates saved — will appear on map
+                    </p>
+                  )}
+                </div>
               ) : (
                 <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textSub, margin: 0 }}>{data.address || "No address recorded"}</p>
               )}

@@ -3,35 +3,74 @@ import { strictColors } from "./strictColorRules";
 
 const thumbCache = {};
 
+function resolveThumb(thumbnail) {
+  if (!thumbnail) return null;
+  // Already a full URL (http/https)
+  if (thumbnail.startsWith("http")) return thumbnail;
+  // Local path like "thumbnails/ABC123.jpg" — serve via backend
+  if (thumbnail.startsWith("thumbnails/")) return `http://localhost:5050/${thumbnail}`;
+  return null;
+}
+
 function useThumbnail(post) {
-  const tiktok = post?.externalUrls?.tiktok || "";
-  const insta = post?.externalUrls?.insta || "";
-  const cacheKey = tiktok || insta;
-  const [thumb, setThumb] = useState(() => thumbCache[cacheKey] || null);
+  // Use pre-scraped thumbnail from tiktok_posts.json directly
+  const preloaded = resolveThumb(post?.thumbnail);
+
+  const tiktok = post?.externalUrls?.tiktok || (!post?.tiktok_url?.includes("instagram") ? post?.tiktok_url : "") || "";
+  const insta = post?.externalUrls?.insta || (post?.tiktok_url?.includes("instagram") ? post?.tiktok_url : "") || "";
+  const cacheKey = tiktok || insta || post?.id || "";
+
+  const [thumb, setThumb] = useState(() => {
+    if (preloaded) return preloaded;
+    return thumbCache[cacheKey] || null;
+  });
 
   useEffect(() => {
+    if (preloaded) {
+      setThumb(preloaded);
+      return;
+    }
     if (!cacheKey) return;
     if (thumbCache[cacheKey]) { setThumb(thumbCache[cacheKey]); return; }
+
     if (tiktok && tiktok.includes("tiktok.com")) {
       fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(tiktok)}`)
-        .then(r => r.json()).then(data => { if (data.thumbnail_url) { thumbCache[cacheKey] = data.thumbnail_url; setThumb(data.thumbnail_url); } }).catch(() => {});
+        .then(r => r.json())
+        .then(data => {
+          if (data.thumbnail_url) {
+            thumbCache[cacheKey] = data.thumbnail_url;
+            setThumb(data.thumbnail_url);
+          }
+        })
+        .catch(() => {});
     }
+
     if (insta && insta.includes("instagram.com")) {
       const cleanUrl = insta.split("?")[0].replace(/\/$/, "");
       fetch(`https://corsproxy.io/?${encodeURIComponent(`${cleanUrl}/embed/`)}`)
-        .then(r => r.text()).then(html => {
-          const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-          if (match?.[1]) { const url = match[1].replace(/&amp;/g, "&"); thumbCache[cacheKey] = url; setThumb(url); }
-        }).catch(() => {});
+        .then(r => r.text())
+        .then(html => {
+          const match =
+            html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ||
+            html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+          if (match?.[1]) {
+            const url = match[1].replace(/&amp;/g, "&");
+            thumbCache[cacheKey] = url;
+            setThumb(url);
+          }
+        })
+        .catch(() => {});
     }
-  }, [tiktok, insta, cacheKey]);
+  }, [preloaded, tiktok, insta, cacheKey]);
 
   return thumb;
 }
 
 function getPostPlatform(post) {
+  if (post?.type === "instagram") return "instagram";
   if (post?.externalUrls?.tiktok) return "tiktok";
   if (post?.externalUrls?.insta) return "instagram";
+  if (post?.tiktok_url?.includes("instagram")) return "instagram";
   return null;
 }
 
@@ -61,22 +100,94 @@ function ModalHeader({ title, onClose, theme }) {
   );
 }
 
+async function pollForResult(url, maxAttempts = 40, intervalMs = 3000) {
+  for (let i = 0; i < maxAttempts; i++) {
+    await new Promise(r => setTimeout(r, intervalMs));
+    try {
+      const res = await fetch(`http://localhost:5050/result?url=${encodeURIComponent(url)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.found) return data;
+      }
+    } catch (e) {}
+  }
+  return null;
+}
+
 function AddPostModal({ isOpen, onClose, onConfirm, theme }) {
   const [urls, setUrls] = useState({ tiktok: "", insta: "" });
+  const [status, setStatus] = useState("idle");
   const hasTiktok = urls.tiktok.trim().length > 0;
   const hasInsta = urls.insta.trim().length > 0;
+  const isLoading = status === "submitting" || status === "polling";
+
+  useEffect(() => {
+    if (isOpen) { setUrls({ tiktok: "", insta: "" }); setStatus("idle"); }
+  }, [isOpen]);
 
   const urlInputStyle = {
     flex: 1, background: "none", border: "none", outline: "none",
     fontSize: "13px", fontFamily: "inherit", color: theme.text,
   };
 
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} theme={theme}>
-      <ModalHeader title="Add post" onClose={onClose} theme={theme} />
-      <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: "0 0 16px" }}>Paste a TikTok or Instagram link</p>
+  const statusMessages = {
+    submitting: "Saving URL…",
+    polling: "Scraping post data… this can take up to a minute",
+    timeout: "Couldn't fetch data — post created without details",
+  };
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "20px" }}>
+  const handleSubmit = async () => {
+    const url = urls.tiktok.trim() || urls.insta.trim();
+    setStatus("submitting");
+
+    try {
+      await fetch("http://localhost:5050/add-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+    } catch (e) {
+      console.error("Failed to save URL:", e);
+    }
+
+    setStatus("polling");
+    const scraped = await pollForResult(url);
+
+    setStatus(scraped ? "done" : "timeout");
+    onConfirm(
+      { tiktok: urls.tiktok.trim(), insta: urls.insta.trim() },
+      scraped
+    );
+
+    onClose();
+  };
+
+  return (
+    <Modal isOpen={isOpen} onClose={isLoading ? undefined : onClose} theme={theme}>
+      <ModalHeader title="Add post" onClose={isLoading ? undefined : onClose} theme={theme} />
+
+      {isLoading && (
+        <div style={{
+          display: "flex", alignItems: "center", gap: "10px",
+          background: theme.surfaceAlt, border: `1px solid ${theme.border}`,
+          borderRadius: "10px", padding: "10px 14px", marginBottom: "16px",
+        }}>
+          <div style={{
+            width: "14px", height: "14px", borderRadius: "50%",
+            border: `2px solid ${theme.border}`, borderTopColor: theme.text,
+            animation: "spin 0.7s linear infinite", flexShrink: 0,
+          }} />
+          <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: 0 }}>
+            {statusMessages[status]}
+          </p>
+        </div>
+      )}
+
+      <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: "0 0 16px" }}>
+        Paste a TikTok or Instagram link
+      </p>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "20px", opacity: isLoading ? 0.5 : 1, pointerEvents: isLoading ? "none" : "auto" }}>
         <div style={{ border: `1px solid ${hasTiktok ? theme.text : theme.border}`, borderRadius: "10px", padding: "10px 12px", background: theme.inputBg, opacity: hasInsta ? 0.4 : 1, pointerEvents: hasInsta ? "none" : "auto", transition: "border-color 0.15s" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <div style={{ width: "26px", height: "26px", background: "#111", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -103,26 +214,26 @@ function AddPostModal({ isOpen, onClose, onConfirm, theme }) {
       </div>
 
       <button
-        onClick={async () => {
-          const url = urls.tiktok.trim() || urls.insta.trim();
-          try {
-            await fetch("http://localhost:5050/add-url", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ url }),
-            });
-          } catch (e) {
-            console.error("Failed to save URL:", e);
-          }
-          onConfirm(urls);
-          onClose();
-          setUrls({ tiktok: "", insta: "" });
+        onClick={handleSubmit}
+        disabled={(!hasTiktok && !hasInsta) || isLoading}
+        style={{
+          width: "100%",
+          background: (hasTiktok || hasInsta) && !isLoading ? theme.text : theme.border,
+          color: (hasTiktok || hasInsta) && !isLoading ? theme.bg : theme.textMuted,
+          border: "none", padding: "11px", borderRadius: "10px",
+          fontSize: "13px", fontWeight: "600",
+          cursor: (hasTiktok || hasInsta) && !isLoading ? "pointer" : "not-allowed",
+          fontFamily: "inherit",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
         }}
-        disabled={!hasTiktok && !hasInsta}
-        style={{ width: "100%", background: (hasTiktok || hasInsta) ? theme.text : theme.border, color: (hasTiktok || hasInsta) ? theme.bg : theme.textMuted, border: "none", padding: "11px", borderRadius: "10px", fontSize: "13px", fontWeight: "600", cursor: (hasTiktok || hasInsta) ? "pointer" : "not-allowed", fontFamily: "inherit" }}
       >
-        Add post
+        {isLoading && (
+          <div style={{ width: "12px", height: "12px", borderRadius: "50%", border: `2px solid ${theme.textMuted}`, borderTopColor: theme.bg, animation: "spin 0.7s linear infinite" }} />
+        )}
+        {isLoading ? "Processing…" : "Add post"}
       </button>
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </Modal>
   );
 }
@@ -262,11 +373,17 @@ function PostCard({ post, index, isSelectMode, isSelected, onClick, theme }) {
   const platform = getPostPlatform(post);
   const isInstagram = platform === "instagram";
   const [mounted, setMounted] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), index * 60);
     return () => clearTimeout(t);
   }, [index]);
+
+  // Reset imgError if thumb changes
+  useEffect(() => { setImgError(false); }, [thumb]);
+
+  const showPlaceholder = !thumb || imgError;
 
   return (
     <div
@@ -288,18 +405,26 @@ function PostCard({ post, index, isSelectMode, isSelected, onClick, theme }) {
         onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; }}
         onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; }}
       >
-        {thumb && (
-          <img src={thumb} alt={post.title || `Post ${index + 1}`} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        {/* Actual thumbnail image */}
+        {thumb && !imgError && (
+          <img
+            src={thumb}
+            alt={post.title || post.name || `Post ${index + 1}`}
+            onError={() => setImgError(true)}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
         )}
 
-        {isInstagram && !thumb && (
+        {/* Instagram placeholder */}
+        {isInstagram && showPlaceholder && (
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "6px" }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg>
             <span style={{ fontFamily: "inherit", fontSize: "10px", fontWeight: "700", color: "rgba(255,255,255,0.9)" }}>Instagram</span>
           </div>
         )}
 
-        {!isInstagram && !thumb && (
+        {/* Generic placeholder */}
+        {!isInstagram && showPlaceholder && (
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={theme.border} strokeWidth="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </div>
@@ -316,9 +441,9 @@ function PostCard({ post, index, isSelectMode, isSelected, onClick, theme }) {
 
       <div style={{ marginTop: "8px" }}>
         <p style={{ fontFamily: "inherit", fontSize: "12px", fontWeight: "700", color: theme.text, margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {post.title || "Untitled"}
+          {post.title || post.name || "Untitled"}
         </p>
-        {post.address && (
+        {(post.address) && (
           <p style={{ fontFamily: "inherit", fontSize: "11px", color: theme.textMuted, margin: "2px 0 0", display: "flex", alignItems: "center", gap: "3px" }}>
             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             {post.address.split(",")[0]}
@@ -337,6 +462,8 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
   const [showFolderPicker, setShowFolderPicker] = useState(false);
   const [showCreateFolder, setShowCreateFolder] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
+  const [search, setSearch] = useState("");
+  const [locationSearch, setLocationSearch] = useState("");
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [editedName, setEditedName] = useState(folderName);
@@ -379,6 +506,12 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
   const handleCreateFolder = (folderData) => { onAddFolder?.(folderData); setShowCreateFolder(false); setShowFolderPicker(true); };
 
   const isFavourites = folderName === "Favourites";
+
+  const filteredPosts = posts.filter(p => {
+    const matchName = !search || (p.title || p.name || "").toLowerCase().includes(search.toLowerCase());
+    const matchLoc = !locationSearch || (p.address || "").toLowerCase().includes(locationSearch.toLowerCase());
+    return matchName && matchLoc;
+  });
 
   const btnSecondary = {
     display: "flex", alignItems: "center", gap: "5px", padding: "8px 14px",
@@ -429,18 +562,16 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
                     style={{ fontFamily: "inherit", fontSize: "24px", fontWeight: "800", color: theme.text, background: theme.surface, border: `1px solid ${theme.text}`, borderRadius: "8px", padding: "2px 10px", outline: "none", letterSpacing: "-0.5px", maxWidth: "300px" }}
                   />
                 ) : (
-                  
-
-                  <h2 style={{ 
-                  fontFamily: "'GFS Didot', serif",
-                  fontStyle: "normal",
-                  fontSize: "40px", 
-                  fontWeight: "400",        
-                  color: theme.text, 
-                  margin: "0 0 14px", 
-                  letterSpacing: "0px",     
-                  lineHeight: 1.2 
-                }}>
+                  <h2 style={{
+                    fontFamily: "'GFS Didot', serif",
+                    fontStyle: "normal",
+                    fontSize: "40px",
+                    fontWeight: "400",
+                    color: theme.text,
+                    margin: "0 0 14px",
+                    letterSpacing: "0px",
+                    lineHeight: 1.2
+                  }}>
                     {folderName}
                   </h2>
                 )}
@@ -481,6 +612,39 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
             </div>
           </div>
 
+
+          {/* Search bars */}
+          {posts.length > 0 && (
+            <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+              <div style={{ position: "relative", flex: 1 }}>
+                <svg style={{ position: "absolute", left: "11px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={theme.textMuted} strokeWidth="2.2">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  placeholder="Search by name"
+                  style={{ background: theme.inputBg, border: `1px solid ${theme.border}`, borderRadius: "10px", padding: "9px 12px 9px 34px", fontSize: "13px", fontFamily: "inherit", color: theme.text, outline: "none", width: "100%", boxSizing: "border-box", transition: "border-color 0.15s" }}
+                  onFocus={e => e.target.style.borderColor = theme.text}
+                  onBlur={e => e.target.style.borderColor = theme.border}
+                />
+              </div>
+              <div style={{ position: "relative", flex: 1 }}>
+                <svg style={{ position: "absolute", left: "11px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={theme.textMuted} strokeWidth="2.2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <input
+                  value={locationSearch}
+                  onChange={e => setLocationSearch(e.target.value)}
+                  placeholder="Search by location"
+                  style={{ background: theme.inputBg, border: `1px solid ${theme.border}`, borderRadius: "10px", padding: "9px 12px 9px 34px", fontSize: "13px", fontFamily: "inherit", color: theme.text, outline: "none", width: "100%", boxSizing: "border-box", transition: "border-color 0.15s" }}
+                  onFocus={e => e.target.style.borderColor = theme.text}
+                  onBlur={e => e.target.style.borderColor = theme.border}
+                />
+              </div>
+            </div>
+          )}
+
           {posts.length === 0 ? (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 0", textAlign: "center" }}>
               <div style={{ width: "52px", height: "52px", borderRadius: "14px", background: theme.surface, border: `1px solid ${theme.border}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
@@ -490,9 +654,14 @@ export default function InsideFolder({ folderName, folderColor, onBack, onPostCl
               <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: "0 0 18px" }}>Add your first TikTok or Instagram post</p>
               <button onClick={() => setShowAddModal(true)} style={{ background: theme.text, color: theme.bg, border: "none", padding: "9px 20px", borderRadius: "10px", fontSize: "13px", fontWeight: "600", cursor: "pointer", fontFamily: "inherit" }}>Add first post</button>
             </div>
+          ) : filteredPosts.length === 0 ? (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 0", textAlign: "center" }}>
+              <p style={{ fontFamily: "inherit", fontSize: "14px", fontWeight: "700", color: theme.text, margin: "0 0 3px" }}>No results</p>
+              <p style={{ fontFamily: "inherit", fontSize: "12px", color: theme.textMuted, margin: 0 }}>Try a different search</p>
+            </div>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(155px, 1fr))", gap: "14px" }}>
-              {posts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <PostCard
                   key={post.id}
                   post={post}

@@ -40,8 +40,9 @@ export default function App() {
   const [view, setView] = useState("discover");
   const [currentFolderName, setCurrentFolderName] = useState("");
   const [currentPostId, setCurrentPostId] = useState(null);
-  const [prevView, setPrevView] = useState(null); // so PostDetail knows where to go back
+  const [prevView, setPrevView] = useState(null);
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("savable_dark") === "true");
+  const [mapFocusPostId, setMapFocusPostId] = useState(null);
   const theme = darkMode ? DARK : LIGHT;
 
   const [folders, setFolders] = useState(() => {
@@ -70,12 +71,45 @@ export default function App() {
     localStorage.setItem("savable_dark", String(darkMode));
   }, [darkMode]);
 
-  const createNewPost = (urlData) => {
+  /**
+   * Resolves a raw category string from the backend against existing folder names.
+   * Tries case-insensitive match first; if no match found, returns the raw string as-is
+   * (so it still appears as a tag, just won't tie to an existing folder).
+   */
+  const resolveCategory = (rawCategory, currentFolders) => {
+    if (!rawCategory) return null;
+    const lower = rawCategory.toLowerCase().trim();
+    const match = currentFolders.find(f => f.name.toLowerCase() === lower);
+    return match ? match.name : rawCategory; // use the folder's exact casing if matched
+  };
+
+  const createNewPost = (urlData, scrapedData) => {
     const newId = Date.now();
+
+    // ✅ Resolve backend category against existing folders (case-insensitive)
+    const resolvedCategory = resolveCategory(scrapedData?.category, folders);
+
+    const categories = [
+      ...(currentFolderName ? [currentFolderName] : []),
+    ];
+
+    // Add resolved backend category only if it's different from the current folder
+    if (resolvedCategory && resolvedCategory !== currentFolderName) {
+      categories.push(resolvedCategory);
+    }
+
     setPosts(prev => [...prev, {
-      id: newId, title: "", address: "",
-      categories: currentFolderName ? [currentFolderName] : [],
-      rating: 0, notes: "", photos: [], externalUrls: urlData
+      id: newId,
+      title: scrapedData?.name || "",
+      address: scrapedData?.address || "",
+      latitude: scrapedData?.latitude || null,
+      longitude: scrapedData?.longitude || null,
+      categories,
+      rating: 0,
+      notes: "",
+      photos: [],
+      externalUrls: urlData,
+      thumbnail: scrapedData?.thumbnail || "",
     }]);
     setCurrentPostId(newId);
     setPrevView("inside");
@@ -191,7 +225,7 @@ export default function App() {
               <circle cx="12" cy="10" r="3"/>
             </svg>
           </div>
-          <span style={{ fontFamily: "'GFS Didot', serif", fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>Savable</span>
+          <span style={{ fontFamily: "DM Sans', -apple-system, sans-serif", fontSize: "14px", fontWeight: "800", color: theme.text, letterSpacing: "-0.4px", transition: "color 0.25s" }}>Savable</span>
         </div>
 
         {/* Nav links */}
@@ -289,7 +323,7 @@ export default function App() {
           <PostDetail
             onBack={handlePostDetailBack}
             onViewOnMap={(id) => {
-              // Navigate to map, then open the post
+              setMapFocusPostId(id);
               setView("map");
             }}
             data={posts.find(p => p.id === currentPostId) || {}}
@@ -304,6 +338,8 @@ export default function App() {
             allFolders={folders}
             theme={theme}
             onPostClick={(id) => handlePostClick(id, "map")}
+            focusPostId={mapFocusPostId}
+            onFocusConsumed={() => setMapFocusPostId(null)}
           />
         )}
       </div>

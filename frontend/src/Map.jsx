@@ -15,7 +15,7 @@ function MapPinIcon(color) {
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
 
-export default function Map({ posts, allFolders, theme, onPostClick }) {
+export default function Map({ posts, allFolders, theme, onPostClick, focusPostId, onFocusConsumed }) {
   const [search, setSearch] = useState("");
   const [locationSearch, setLocationSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -24,7 +24,7 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
   const catScrollRef = useRef(null);
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
-  const markersRef = useRef([]);
+  const markersRef = useRef({});  // keyed by post.id
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 50);
@@ -44,7 +44,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
     return allFolders?.find(f => f.name === cat)?.color || strictColors[cat] || "#4F46E5";
   };
 
-  // Posts that have coordinates
   const mappablePosts = (posts || []).filter(p => p.latitude && p.longitude);
 
   const filteredPosts = mappablePosts.filter(p => {
@@ -54,7 +53,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
     return matchCat && matchSearch && matchLoc;
   });
 
-  // Load Leaflet
   const [leafletReady, setLeafletReady] = useState(false);
   useEffect(() => {
     if (window.L) { setLeafletReady(true); return; }
@@ -68,7 +66,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
     document.head.appendChild(script);
   }, []);
 
-  // Init map
   useEffect(() => {
     if (!leafletReady || !mapRef.current || mapInstanceRef.current) return;
     const L = window.L;
@@ -77,24 +74,34 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
       zoom: 11,
       zoomControl: false,
     });
-    L.tileLayer(
-      theme.bg === "#111111"
-        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-      { attribution: "", subdomains: "abcd", maxZoom: 19 }
-    ).addTo(map);
+
+    if (theme.bg === "#111111") {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        attribution: "",
+        subdomains: "abcd",
+        maxZoom: 19,
+      }).addTo(map);
+    } else {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        attribution: "",
+        subdomains: "abcd",
+        maxZoom: 19,
+      }).addTo(map);
+    }
+
     L.control.zoom({ position: "bottomright" }).addTo(map);
     mapInstanceRef.current = map;
   }, [leafletReady]);
 
-  // Update markers — uses folder color for new folders automatically
+  // Rebuild markers whenever filtered posts or hover state changes
   useEffect(() => {
     if (!mapInstanceRef.current || !window.L) return;
     const L = window.L;
     const map = mapInstanceRef.current;
 
-    markersRef.current.forEach(m => m.remove());
-    markersRef.current = [];
+    // Remove old markers
+    Object.values(markersRef.current).forEach(m => m.remove());
+    markersRef.current = {};
 
     filteredPosts.forEach(post => {
       const primaryCat = post.categories?.[0];
@@ -118,18 +125,44 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
           </div>
         `, { maxWidth: 200 });
 
-      markersRef.current.push(marker);
+      // Store by post.id for reliable lookup
+      markersRef.current[post.id] = marker;
     });
   }, [filteredPosts, hoveredPost, allFolders]);
 
-  // Fly to hovered post
+  // ✅ REMOVED: the useEffect that flew to hovered post on hover
+  // Map now only moves on explicit click (see handleCardClick below)
+
+  // Handle card click: fly to post and open popup, but do NOT navigate to detail
+  const handleCardClick = (post) => {
+    if (!mapInstanceRef.current || !post.latitude || !post.longitude) return;
+    mapInstanceRef.current.flyTo([post.latitude, post.longitude], 15, { duration: 0.8 });
+    setTimeout(() => {
+      const marker = markersRef.current[post.id];
+      if (marker) marker.openPopup();
+    }, 900);
+  };
+
+  // Focus a specific post when navigating from PostDetail → Map
   useEffect(() => {
-    if (!mapInstanceRef.current || !hoveredPost) return;
-    const post = filteredPosts.find(p => p.id === hoveredPost);
-    if (post?.latitude && post?.longitude) {
-      mapInstanceRef.current.flyTo([post.latitude, post.longitude], 14, { duration: 0.8 });
+    if (!focusPostId || !mapInstanceRef.current) return;
+
+    const post = mappablePosts.find(p => p.id === focusPostId);
+    if (!post?.latitude || !post?.longitude) {
+      onFocusConsumed?.();
+      return;
     }
-  }, [hoveredPost]);
+
+    setActiveCategory("All");
+    mapInstanceRef.current.flyTo([post.latitude, post.longitude], 15, { duration: 1 });
+
+    setTimeout(() => {
+      const marker = markersRef.current[focusPostId];
+      if (marker) marker.openPopup();
+    }, 1200);
+
+    onFocusConsumed?.();
+  }, [focusPostId]);
 
   const inputBase = {
     background: theme.inputBg,
@@ -184,7 +217,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
 
       <main style={{ maxWidth: "1400px", margin: "0 auto", padding: "28px 24px 0" }}>
 
-        {/* Header */}
         <div style={{ marginBottom: "20px" }}>
           <p style={{ fontFamily: "inherit", fontSize: "11px", fontWeight: "600", color: theme.textMuted, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.08em" }}>
             Explore
@@ -201,7 +233,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
             Explore
           </h2>
 
-          {/* Search row */}
           <div style={{ display: "flex", gap: "10px", marginBottom: "14px" }}>
             <div style={{ position: "relative", flex: 1 }}>
               <svg style={{ position: "absolute", left: "11px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={theme.textMuted} strokeWidth="2.2">
@@ -231,7 +262,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
             </div>
           </div>
 
-          {/* Category pills — dynamic from allFolders */}
           <div
             ref={catScrollRef}
             className="cat-pill"
@@ -247,8 +277,7 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
             {dynamicCategories.map(cat => {
               const isActive = activeCategory === cat;
               const color = getCategoryColor(cat);
-              // For light text detection: use white text on dark colors, dark text on light ones
-              const isLight = color === "#e6ce00" || color === "#FFFF00"; // yellow-ish colors
+              const isLight = color === "#e6ce00" || color === "#FFFF00";
               return (
                 <button
                   key={cat}
@@ -277,7 +306,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
           </div>
         </div>
 
-        {/* Main layout: list + map */}
         <div style={{ display: "flex", gap: "0", height: "calc(100vh - 260px)", minHeight: "500px" }}>
 
           {/* Left: places list */}
@@ -314,7 +342,8 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                     key={post.id}
                     onMouseEnter={() => setHoveredPost(post.id)}
                     onMouseLeave={() => setHoveredPost(null)}
-                    onClick={() => onPostClick?.(post.id)}
+                    // ✅ Card click now flies to pin on map — does NOT navigate to post detail
+                    onClick={() => handleCardClick(post)}
                     style={{
                       background: isHovered ? theme.hover : theme.surface,
                       border: `1px solid ${isHovered ? theme.text : theme.border}`,
@@ -327,7 +356,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                       transition: `opacity 0.4s ease ${i * 40}ms, transform 0.4s ease ${i * 40}ms, background 0.15s, border-color 0.15s`,
                     }}
                   >
-                    {/* Title + favourite */}
                     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "8px", marginBottom: "5px" }}>
                       <p style={{
                         fontFamily: "inherit", fontSize: "13px", fontWeight: "700",
@@ -344,7 +372,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                       )}
                     </div>
 
-                    {/* Rating stars */}
                     {post.rating > 0 && (
                       <div style={{ display: "flex", alignItems: "center", gap: "2px", marginBottom: "6px" }}>
                         {[1, 2, 3, 4, 5].map(s => (
@@ -361,7 +388,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                       </div>
                     )}
 
-                    {/* Address */}
                     {post.address && (
                       <p style={{ fontFamily: "inherit", fontSize: "11px", color: theme.textMuted, margin: "0 0 8px", display: "flex", alignItems: "flex-start", gap: "4px", lineHeight: 1.4 }}>
                         <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginTop: "2px", flexShrink: 0 }}>
@@ -371,7 +397,6 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                       </p>
                     )}
 
-                    {/* Category tags — use folder color for each category */}
                     <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
                       {post.categories?.filter(c => c !== "Favourites").map(cat => {
                         const tagColor = allFolders?.find(f => f.name === cat)?.color || strictColors[cat] || "#4F46E5";
@@ -389,7 +414,7 @@ export default function Map({ posts, allFolders, theme, onPostClick }) {
                       })}
                     </div>
 
-                    {/* Visit post link */}
+                    {/* ✅ "visit saved post" is the ONLY thing that navigates to post detail */}
                     <button
                       onClick={e => { e.stopPropagation(); onPostClick?.(post.id); }}
                       style={{

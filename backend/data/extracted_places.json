@@ -1,413 +1,37 @@
 [
     {
-        "tiktok_id": "7637002886127291666",
-        "tiktok_url": "https://www.tiktok.com/@savable.py/video/7637002886127291666?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Mississauga",
-        "original_text": "Place: Mandarin Buffet Location: 3105 Dundas Street W, Mississauga, ON L5L 3R8",
-        "transcript": "",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "Mandarin Buffet"
-        ],
-        "addresses": [
-            "3105 Dundas Street W, Mississauga, ON L5L 3R8"
-        ],
-        "enriched_address": "Mandarin, 3105, Dundas Street West, Erin Mills, Mississauga, Peel Region, Golden Horseshoe, Ontario, L5L 3R8, Canada",
-        "enriched_place_name": "Mandarin Buffet",
-        "latitude": 43.5217093,
-        "longitude": -79.6855456
-    },
-    {
-        "tiktok_id": "7540808846684507399",
-        "tiktok_url": "https://www.tiktok.com/@bonbonnmon/video/7540808846684507399?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "@Unholy Donuts Canada please come to Vancouver! These were amazing ❤️ #donuts #torontoeats #toronto ",
-        "transcript": "you have finally found a not too sweet sinful doughnuts in Toronto\nand trust me they're worth every bite\nI'm not much of a doughnut lover as much as my brother in law is\nbut I'm happy that he took us here\ncause unholy doughnuts is definitely an exception\nevery single one of these look like a work of art\nand they're so pretty to look at\nwe ordered an assortment of donuts and they pick up Weno donuts\nbecause I love Weno the filling\noh my God guys\nthe dough is super soft and not overly sweet and the flavours is actually hit\nit's the kind of dessert that makes you wanna stop men by it and like ho ho\nthis is so dangerous I'm so happy to be sharing this experience with my family\nand if you're ever in Toronto and haven't tried unholy donuts yet\nthis is your sign grab your friends or anyone in the street\ngrab a box and thank me later",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "Unholy Donuts Canada",
-            "Bay St Toronto"
-        ],
-        "addresses": [],
-        "enriched_address": "Unholy Donuts, 598, Bay Street, Yonge-Bay Corridor, University—Rosedale, Toronto, Golden Horseshoe, Ontario, M5G 1C9, Canada",
-        "enriched_place_name": "Unholy Donuts Canada",
-        "latitude": 43.6559011,
-        "longitude": -79.3839884
-    },
-    {
-        "tiktok_id": "7637015925702610183",
-        "tiktok_url": "https://www.tiktok.com/@savable.py/video/7637015925702610183?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Mississauga",
-        "original_text": "Place: D Spot Dessert Cafe Mississauga Dixie Location: 5165 Dixie Rd Unit 7, Mississauga, ON L4W 4G1",
-        "transcript": "",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "D Spot Dessert Cafe Mississauga Dixie"
-        ],
-        "addresses": [
-            "5165 Dixie Rd Unit 7, Mississauga, ON L4W 4G1"
-        ],
-        "enriched_address": "5165, Dixie Road, Mississauga, Peel Region, Golden Horseshoe, Ontario, L4W 4G1, Canada",
-        "enriched_place_name": "D Spot Dessert Cafe Mississauga Dixie",
-        "latitude": 43.6399761,
-        "longitude": -79.6251796
-    },
-    {
-        "tiktok_id": "7598108209903127829",
-        "tiktok_url": "https://www.tiktok.com/@biteswithlily/video/7598108209903127829?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Bangkok, Thailand",
-        "original_text": "Everything I ate at the Train Night Market in Bangkok! 🚂🍜🔥 📍Train Night Market Srinagarindra, Bangkok, Thailand 🇹🇭 #nightmarket #foodmarket #bangkok #thailand #streetfood",
-        "transcript": "This is everything I ate at the Train Night Market in Bangkok.\nThere was so many food options to choose from,\nlike this jumping shrimp. But this store caught my eye.\nI grabbed these two dollar fried chicken tenders,\nwhich were crispy with a soft chew.\nI loved adding fermented shrimp sauce on top,\nwhich added a salty and kind of funky kick in a good way.\nNext, I tried this 4 dollar Buddha carbonara omelette,\nwhich was topped with sea weed and a fried egg.\nIt was spicy and a little creamy with a runny egg yolk.\nSome cheese would make this even better.\nThen I got this four dollar mochi where you can pick kill feeling.\nSo I added strawberry cream cheese and grapes.\nI love the concept of this,\nbut the mochi itself was just missing that chewy texture I love.\nIt was quite gummy and soft,\nbut the feeling was not bad.\nI also got this $3 snail salad,\nwhich had an addictive soft crunch and chewiness.\nThe chilli,\nlime and onions just gave it a really fresh and tangy burst of flavour\nI like. Oh,\nmy favourite bite turned out to be the cheapest item,\nwhich were these 50 cent beef skewers.\nThey were smokey, spicy,\na little fatty and juicy. I reckon I could smash out like 10 of these.\nAnd when in Thailand, you've got to get Thai milk tea.\nThis guy showed me his baby squirrel.\nAnyways, the two dollar Thai milk Tea was refreshing and not too sweet.\nAnd finally, I got this three dollar banana roti,\nwhich was golden and caramelized and coated in Nutella.\nIt was wonderfully crispy and the banana inside was soft and gooey.\nThis was a sweet end to the night.",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "Train Night Market",
-            "Train Night Market Srinagarindra, Bangkok, Thailand",
-            "the Train Night Market"
-        ],
-        "addresses": [],
-        "enriched_address": "ดิวันรัชดา, ทางหลัก, แขวงดินแดง, เขตดินแดง, กรุงเทพมหานคร, 10400, ประเทศไทย",
-        "enriched_place_name": "Train Night Market",
-        "latitude": 13.7671847,
-        "longitude": 100.5685776
-    },
-    {
-        "tiktok_id": "7527082617506712838",
-        "tiktok_url": "https://www.tiktok.com/@torontofoodguide/video/7527082617506712838?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Mississauga",
-        "original_text": "Let me put you guys on this spot serving up extremely delicious nashville hot chicken! They just opened up their 2nd location in mississauga and brought out some new menu items that are worth trying. Just make sure to get the mac n cheese and thank me later!  📍THGS Hot Chicken  #hotchicken #chicken #bestchicken #nashvillehotchicken #chickentenders #comfortfood #soulfood #viral #viralfood #toronto #torontofood ",
-        "transcript": "Am I in Nashville or Mississauga?\nBecause I just found one of the best hot chicken joints in the GTA.\nStarting off strong with these hand breaded chicken wings.\nThese were crazy. And these are jumbo wings loaded with so much meat.\nAnd that's what I call a clean pull.\nOne bite, no meat,\njust perfection.\nBut my favorite so far has to be their homemade creamy Mac and cheese.\nAnd if your Mac and cheese doesn't look like this,\nI don't want it.\nThey absolutely load up the container high up to the sky.\nThen he puts the hot honey chicken.\nHoly with the sauted onion and peppers.\nFlavor combination is something I never had before.\nAnd this was game over for me.\nThe ultimate soul comfort.\nBut it was finally time to try the Nashville hot Chicken.\nAnd just look at these gigantic chicken tenders.\nIt was crispy, tender,\njuicy and loaded up with so much Nashville spice.\nBut what do you know about chicken and waffle\nand the mozzarella cheese sticks?\nSo definitely check this spot out and follow me for more food content.",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "THGS Hot Chicken"
-        ],
-        "addresses": [],
-        "enriched_address": "Peel, Ontario, Canada",
-        "enriched_place_name": "THGS Hot Chicken",
-        "latitude": 43.745865,
-        "longitude": -79.7962296
-    },
-    {
-        "tiktok_id": "7544006025049885960",
-        "tiktok_url": "https://www.tiktok.com/@iamshobhit_tiktok/video/7544006025049885960?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "🍂 Edwards Gardens Waterfalls 🍂 A must-visit before winter arrives! ❄️✨ Nestled in the heart of Toronto, this spot feels like a hidden oasis—a place where you can wander, listen to the gentle falls, and escape the city rush. 🌿🌊 🚴 The best way to get here? Hop on the Don Valley bike trail or stroll your way through the park—it’s all easily mapped on Google. 📍 Along the way, you’ll discover some beautiful serene corners. 📸 If you’re searching for peaceful trails and picture-perfect landscapes, Edwards Gardens is the place to be before the snow covers it all. #EdwardsGardens #TorontoWaterfalls #TorontoNature #TorontoParks #ExploreToronto         Edwards Gardens, Edwards Gardens Waterfall, Toronto waterfalls, Toronto nature spots, Toronto parks, Don Valley bike trail, Toronto hidden gems, must visit Toronto, Toronto fall spots, waterfalls in Toronto",
-        "transcript": "",
-        "category": "nature",
-        "artist_name": null,
-        "place_names": [
-            "Edwards Gardens",
-            "Edwards Gardens Waterfall",
-            "Edward Gardens",
-            "Toronto Edwards Gardens",
-            "Sdward Gardens",
-            "Don Valley",
-            "Toronto Waterfalls",
-            "Toronto Nature",
-            "Toronto Parks",
-            "Explore Toronto"
-        ],
-        "addresses": [],
-        "enriched_address": "Edwards Gardens, 755, 777, North York, Toronto, Golden Horseshoe, Ontario, Canada",
-        "enriched_place_name": "Edwards Gardens",
-        "latitude": 43.7314095,
-        "longitude": -79.3582053
-    },
-    {
-        "tiktok_id": "7636547481379147030",
-        "tiktok_url": "https://www.tiktok.com/@erhunabbasli/video/7636547481379147030?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "Best $9 cherry blossom activity in Toronto 🌸🚂 If you’re heading to High Park during blossom season, the mini train is such a good add-on. It makes the visit easier, gives you a scenic ride through the park, and lets you enjoy the cherry blossoms without having to do the whole walk. Honestly one of the best little spring experiences in Toronto right now. #highpark #cherryblossomstoronto #springintoronto #thingstodointoronto #torontospring",
-        "transcript": "",
-        "category": "nature",
-        "artist_name": null,
-        "place_names": [
-            "High Park",
-            "highpark"
-        ],
-        "addresses": [],
-        "enriched_address": "High Park, 1873, High Park-Swansea, Parkdale—High Park, Toronto, Golden Horseshoe, Ontario, Canada",
-        "enriched_place_name": "High Park",
-        "latitude": 43.6462813,
-        "longitude": -79.4637945
-    },
-    {
-        "tiktok_id": "7629074564391144717",
-        "tiktok_url": "https://www.tiktok.com/@aprettycoolhoteltour/video/7629074564391144717?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "tiktok_id": "7534961162853600519",
+        "tiktok_url": "https://www.tiktok.com/@valerielikethesong/photo/7534961162853600519?is_from_webapp=1&sender_device=pc",
         "detected_city": null,
-        "original_text": "THIS IS YOUR SIGN to have a party at Rainforest Cafe!!! Thank you for hosting us for the most unforgettable night @Rainforest Cafe  this was the greatest surprise I could ask for 🐸 And thank you to the beautiful friends who grabbed their animal print and hopped onboard so last minute for a much needed nostalgic adventure!!!  #rainforestcafe #kitsch #nostalgiacore",
-        "transcript": "the internet keeps telling me that Rainforest Cafe is dying\nso I did what any Kitch loving\nnostalgia seeking girl would do\nand I called an emergency meeting with my friends\nto take a trip for a belated birthday Celebration\nbefore we left I\nof course\ngave a slideshow presentation about the history of Rainforest Cafe\nbecause I wanted them to feel the weight of this establishment\nwithin our culture and then we were off to Ontario\nCalifornia a bit of a drive from Orange County\nbut very beautiful views the excitement was already through the roof\nand we did not even know what we were in for\nfirst of all this is inside of a giant mall\nlike many Rainforest Cafes are\nand their branding and decor\nstarts long before you even reach the entrance\nnow this is where the surprises really started\nbecause for one thank goodness we had a reservation\nthere was a line out the door\nnot only that our table was completely decorated with hats\nballoon flowers themed glasses\nbinoculars I mean\nit was decked out for our party\nwhile everyone is freaking out and taking it all in\nI get gifted with a heart balloon crown\nso I haven't even sat down yet\nand these people have already made my night\nI look around\neveryone is immediately putting on their temporary tattoos\nthen Cha Cha shows up to say hi\nthey bring out appetizers that were so freaking good\nand did I mention the place is packed\ncertainly not giving the energy of a dying restaurant\nand while we waited for the entrees\nthere was so much to take in and enjoy\nfrom the decor to the simulated thunderstorms\nto the balloon animal artists walking around the place\nI was in heaven the food was 10 out of 10\nit was flavorful and delicious\neveryone was raving about it\nafter not having been to a Rainforest Cafe in about 30 years\nI can confidently say\nmy six year old self would be shaking if she could see me now\nlike this night could not have been more perfect\nwe obviously hit up the iconic gift shop on the way out\nand as we were leaving\nI couldn't help but reflect on how this experience was such a relief\nfrom the usual jungle that I am navigating out here in the real world\nyou know what I mean\nso this is officially your sign to make the reservation\ngo hit up the rainforest you will have a wild time",
-        "category": "food",
-        "artist_name": null,
-        "place_names": [
-            "Rainforest Cafe"
-        ],
-        "addresses": [],
-        "enriched_address": "Rainforest Cafe, 4915, Clifton Hill, Niagara Falls, Niagara Region, Golden Horseshoe, Ontario, L2G 3N5, Canada",
-        "enriched_place_name": "Rainforest Cafe",
-        "latitude": 43.091131,
-        "longitude": -79.0731193
-    },
-    {
-        "tiktok_id": "7633083802495077640",
-        "tiktok_url": "https://www.tiktok.com/@victoriasamson/video/7633083802495077640?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": null,
-        "original_text": "shop with me at the new @Aritzia 🛍️💛 #shoppingvlog #aritzia ",
-        "transcript": "Come shopping with me at the brand new\nhuge Aritzia at the Eaton Centre.\nWe're here. It goes all the way down the mall guys.\nThis is crazy. Oh my gosh,\nthis is insane. A girl is here.\nThis is the biggest Ritzi I've ever seen in my life.\nIt's just crazy cause I used to work here and it's so different now.\nLook at your outfit. Oh guys,\nthis is what I'm here for. Okay,\nwe're gonna try a small and a medium.\nThis color is too good. I'm so excited.\nThese are my favorite sweats ever.\nI'm getting excited. This is too perfect little fit.\nCheck. Even got the champagne.\nOh my goodness me guys, even the cafe is ginormous.\nLike look at the vibe. I found it.\nHey, hey,\nthank you so much. I'm running to get a tank top as well.\nGonna get this one.\nThis is my favorite tank top and I've been needing it in black. Hey,\nthank you. Hanging the new baby up.\nShe's gonna watch me try some stuff on.\nI love this. I really like this color. Yeah,\nI need that. Yes,\nI think these are the mega flares. Yeah,\nI have it. Thank you.\nI love you guys. I'm obsessed with this top. Yeah,\nyeah guys,\nthey have food here. I'm gonna need some of that actually.\nOh my God. I'm so sorry.\nOh my God. I would do this at the new on the new Aritzia carpet.\nGet me Out of here. This tracksuit is so good.\nI'm getting all three, of course,\nbut I got a keychain.\nOh my gosh.\nRight. I was thinking that one's really cute.\nWait, this is so nostalgic from like my Aritzia era.\nThank you. Yeah. Bye.\nThank you. Bye.",
-        "category": "shopping",
-        "artist_name": null,
-        "place_names": [
-            "Aritzia"
-        ],
-        "addresses": [],
-        "enriched_address": "CF Toronto Eaton Centre, 220, Yonge Street, Downtown Yonge East, Toronto Centre, Toronto, Golden Horseshoe, Ontario, M5B 2H1, Canada",
-        "enriched_place_name": "Aritzia",
-        "latitude": 43.6541457,
-        "longitude": -79.3807928
-    },
-    {
-        "tiktok_id": "7524319669566688568",
-        "tiktok_url": "https://www.tiktok.com/@manviirr/video/7524319669566688568?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "🎟️ toronto summers >>  #toronto #torontotiktok #cne #cne2025 #carnival #torontosummer #thingstodo #thingstodotoronto #2025summer #summervibes #amusementpark #explorepage #torontolife   #countyfair",
-        "transcript": "",
-        "category": "attractions",
-        "artist_name": null,
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "100 Princes' Blvd, Toronto, ON M6K 3C3, Canada",
-        "enriched_place_name": "Exhibition Place",
-        "latitude": 43.6353558,
-        "longitude": -79.4132369
-    },
-    {
-        "tiktok_id": "7530000267727686918",
-        "tiktok_url": "https://www.tiktok.com/@dailybora/video/7530000267727686918?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Niagara Falls",
-        "original_text": "The biggest outlet in Canada Niagara 🇨🇦🛍️",
-        "transcript": "",
-        "category": "shopping",
-        "artist_name": null,
-        "place_names": [
-            "Columbia Sportswear Comy",
-            "samme",
-            "Lyng",
-            "pal",
-            "Niagara Falls"
-        ],
-        "addresses": [],
-        "enriched_address": "300 Taylor Rd, Niagara-on-the-Lake, ON L0S 1J0, Canada",
-        "enriched_place_name": "Columbia Sportswear Comy",
-        "latitude": 43.1583474,
-        "longitude": -79.1730031
-    },
-    {
-        "tiktok_id": "7505218489028840710",
-        "tiktok_url": "https://www.tiktok.com/@bwitbunz/video/7505218489028840710?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "Last chance to visit @Pingle’s Farm tulip festival this weekend 🌷 #tulip #tulipfestival #tulipfarm #torontofarm #toronto #todotoronto #thingstodo #torontoactivities #familyfriendly #kidsfriendly #torontolife #durhamregion ",
-        "transcript": "this is the largest tulip festival in the GTA so let me give you the breakdown\nand by the way I'm Bunz I post a lot of family friendly activities\nso follow for more\nthis is Pingles Farm located just about an hour edge from Toronto\nand they do seasonal farm like no other\nget your tickets online to save $5\nso entry was $20 plus tax, come early and immediately go to the wagon ride\notherwise you will be waiting in line\nand yes all of this are included as part of your ticket\nthis was their first year hosting the tulip festival\nand they planted over 500,000 tulips\nthe whole area is not for picking\nit's purely for enjoyment\nlots of photo ops they even have live music and artists\noh and it is also dog friendly\nPick your own tulips are available at the back\nit's $15 for 10 bucks\nand they even have food area so you don't have to go all the way back\nand everything is farm to table and the theme is Dutch food\nand yes everything is very delicious\nas if that's not enough when you get back\nhead over to the playland\nthey put together so many kid friendly activities for all ages\nalso they brought in new animals\nwe were so obsessed with the donkey\nwe spent a solid 3 to 4 hours here every time we go\nand for the admission fee\nit is so worth it definitely recommend you guys check them out",
-        "category": "nature",
-        "artist_name": null,
-        "place_names": [
-            "Pingles Farm",
-            "tulipfarm",
-            "WOSt Taumon Rd"
-        ],
-        "addresses": [],
-        "enriched_address": "1805 Taunton Rd, Hampton, ON L0B 1J0, Canada",
-        "enriched_place_name": "Pingles Farm",
-        "latitude": 43.964331,
-        "longitude": -78.7427383
-    },
-    {
-        "tiktok_id": "7544158794952084756",
-        "tiktok_url": "https://www.tiktok.com/@italiangirl8native/video/7544158794952084756?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "@Urban Planet #shoppinghaul #shoppingaddict #shoppingfun #fyindonesia #foryoupage❤️❤️ ",
-        "transcript": "So today we're going into Urban Planet at Toronto Premium Outlets.\nLet's check them out for back to school.\nThe whole entire store is 10 bucks,\n10 bucks or less.\nLook at these.\nThe whole entire store.\nТы полный\nokay\nthe men's is crazy great deals great stuff\nyeah kids you know look look at the absorbent just look at the prices\njust open today too\nhey so look at this cargoes all you ladies love cargoes look at this\njust aisles and aisles of stuff\nbà lấy cái Xe của bà bà lấy cái Xe của bà\nlấy Xe đẩy bà đang đứng bên đó bà để kìa\noh look at these slippers they're so cute",
-        "category": "shopping",
-        "artist_name": null,
-        "place_names": [
-            "Urban Planet",
-            "Toronto Premium Outlets"
-        ],
-        "addresses": [],
-        "enriched_address": "13850 Steeles Ave, Halton Hills, ON L7G 0J1, Canada",
-        "enriched_place_name": "Urban Planet",
-        "latitude": 43.5756945,
-        "longitude": -79.8299585
-    },
-    {
-        "tiktok_id": "7554942391405251852",
-        "tiktok_url": "https://www.tiktok.com/@seantidope.exe/video/7554942391405251852?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "@DanielCaesar Toronto Pop up Sept 27, 2025 Always Live #danielcaesar #always #concert #toronto ",
-        "transcript": "Baby, baby,\nas you always be.\nIf the time will pass,\nwe'll look back and laugh\nand I'll be here, cause we both know how it goes.\nAlways.\nAnd I don't care if you're with someone,\nalways, always,\nalways, always\nмузыка",
-        "category": "music",
-        "artist_name": "Daniel Caesar",
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "790 Queen St W, Toronto, ON M6J 1G3, Canada",
-        "enriched_place_name": "Daniel Caesar",
-        "latitude": 43.6450684,
-        "longitude": -79.4145064
-    },
-    {
-        "tiktok_id": "7637024986019990814",
-        "tiktok_url": "https://www.tiktok.com/@jjramirez1001/video/7637024986019990814?is_from_webapp=1&sender_device=pc",
-        "detected_city": "Nashville, Tennessee, USA",
-        "original_text": "his little dances 🥹 #nashville #theromantictour #brunomars ",
-        "transcript": "",
-        "category": "music",
-        "artist_name": "Bruno Mars",
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "1 Titans Wy, Nashville, TN 37213, USA",
-        "enriched_place_name": "Bruno Mars",
-        "latitude": 36.1665236,
-        "longitude": -86.7713148
-    },
-    {
-        "tiktok_id": "7569324937362558263",
-        "tiktok_url": "https://www.tiktok.com/@tejasbirria/video/7569324937362558263?is_from_webapp=1&sender_device=pc",
-        "detected_city": null,
-        "original_text": "Can’t go wrong with a Birria Pizzadilla 🔥🍕🌮 all locations are back for the week! Pull up & join us! 🚚 #tejasbirria #foryoupage #birria #tacos #foodtiktok",
+        "original_text": "If you love your BBQ tender, smoky, and melt-in-your-mouth RUN, don’t walk, to this hidden gem! 💎 The brisket is smoked, packed with flavor, and served with that perfect bark. Also first time trying corn bread and I’m IN LOVE ! 😍  #aucklandeats #aucklandbbq #aucklandfood #aucklandfoodie #nzeats ",
         "transcript": "",
         "category": "food",
         "artist_name": null,
         "place_names": [
-            "Tejasbirria"
+            "Valerielikethesong"
         ],
         "addresses": [],
         "enriched_address": null,
-        "enriched_place_name": "Tejasbirria",
+        "enriched_place_name": null,
         "latitude": null,
         "longitude": null
     },
     {
-        "tiktok_id": "7526166019719662853",
-        "tiktok_url": "https://www.tiktok.com/@canadaswonderland/video/7526166019719662853?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "tiktok_id": "7484011595115351302",
+        "tiktok_url": "https://www.tiktok.com/@tryittoronto/video/7484011595115351302?is_from_webapp=1&sender_device=pc",
         "detected_city": "Toronto",
-        "original_text": "🎥 It’s here. The AlpenFury POV you’ve been waiting for. 🤯 And today, it’s not just a video...AlpenFury officially open! Experience the rush as you launch straight through Wonder Mountain, hit 115 km/h, and tear through nine mind-bending inversions. Are you brave enough to face nature’s wrath? *Filmed with park-approved mounted devices. #AlpenFury #CanadasWonderland #RollerCoaster #LaunchCoaster #Toronto #Thingstodo #Nowopen",
-        "transcript": "Non-human.\nNon-human.\nWe hope you enjoyed your ride on Alpen Fury.\nYour sled will be moving ahead shortly.\nAt this time, please\nremain seated until the ride comes to a full and complete stop\nin the station. Then your lap.",
-        "category": "attractions",
-        "artist_name": null,
-        "place_names": [
-            "Alpen Fury",
-            "Wonder Mountain",
-            "Canadas Wonderland",
-            "Roller Coaster",
-            "Launch Coaster"
-        ],
-        "addresses": [],
-        "enriched_address": "Canada's Wonderland, 1 Canada's Wonderland Drive, Vaughan, Ontario, L6A 1S6, Canada",
-        "enriched_place_name": "Alpen Fury",
-        "latitude": 43.843,
-        "longitude": -79.539
-    },
-    {
-        "tiktok_id": "7491450583602171141",
-        "tiktok_url": "https://www.tiktok.com/@the.michael.larin/video/7491450583602171141?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "🇨🇦 Such an underrated place to visit in Toronto! R.C. Harris Water Treatment Plant offers spectacular views over the lake at any season of the year accompanied by a beautiful historical building of the plant itself. What is more, you can get inside during the open doors days. #toronto ",
-        "transcript": "",
-        "category": "attractions",
-        "artist_name": null,
-        "place_names": [
-            "R.C. Harris Water Treatment Plant"
-        ],
-        "addresses": [],
-        "enriched_address": "2701 Queen St E, Toronto, Ontario M4E 1H4, Canada",
-        "enriched_place_name": "R.C. Harris Water Treatment Plant",
-        "latitude": 43.664042,
-        "longitude": -79.3267847
-    },
-    {
-        "tiktok_id": "7510184499414584581",
-        "tiktok_url": "https://www.tiktok.com/@iamnicolecox/video/7510184499414584581?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Hamilton",
-        "original_text": "You do have to pay for parking, but the loop at the top of the falls was amazing. It’s a 3km loop to see the falls and Dundass peak:)  #canada_life🇨🇦 #travel #traveltiktok #nature #hamilton #tewsfalls #waterfall #hike #hiking ",
-        "transcript": "Be sure to check out this waterfall in Hamilton.\nIt's 41 meters tall, making it the tallest in the city.\nIt's also super easy to access.\nThe top of the falls and the trail leads to Dundas Peak.\nMake sure you visit Tews Falls.",
-        "category": "nature",
-        "artist_name": null,
-        "place_names": [
-            "Dundas Peak",
-            "Tews Falls",
-            "Dundass"
-        ],
-        "addresses": [],
-        "enriched_address": "590 Harvest Rd, Hamilton, ON L9H 5K7, Canada",
-        "enriched_place_name": "Dundas Peak",
-        "latitude": 43.282056,
-        "longitude": -79.9775899
-    },
-    {
-        "tiktok_id": "7455145194824928517",
-        "tiktok_url": "https://www.tiktok.com/@heartz4_abbi/video/7455145194824928517?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "a day at the aquarium🫧⋆｡˚⋆𓆜 #aquaruimdate #aquarium #fyp #fypp #dailyvlogs #adayinmylife @R👀 ",
-        "transcript": "",
-        "category": "attractions",
-        "artist_name": null,
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "288 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
-        "enriched_place_name": "Ripley's Aquarium of Canada",
-        "latitude": 43.6424836,
-        "longitude": -79.3861266
-    },
-    {
-        "tiktok_id": "7558534632413613323",
-        "tiktok_url": "https://www.tiktok.com/@foodventureto/video/7558534632413613323?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Toronto",
-        "original_text": "On the last Friday of the month, the ROM hosts a ROM After Dark 19+ party where you can get access to the museum all night. 🫶 Each month has a different theme, this one was back to school and the next one is Trick or Treat Halloween themed on Oct 31 🎃  Tickets are $40 ($36 for rom members) and include 1 free drink ticket 🎫. To purchase food, you have to buy Rom Bucks ($10 each).  They had a photo booth, a caricature station, a station where you can make charm pieces and more! You get access to the exhibits and there’s a DJ all night  🎶  #romafterdark #royalontariomuseum #toronto #todotoronto #torontoevents ",
-        "transcript": "",
+        "original_text": "Such a great gem💎  #foodie #foodtok #gta #foodreview #placestoeat #scarboroughfood #scarborough #toronto #torontofoodie #canadianfoodie ",
+        "transcript": "If you live in Toronto or the G t,\nlet me put you on to this affordable comfort food spot.\nYou guys know the drill. This account is for people who love to eat.\nSo hit that follow button for more food recommendation.\nThis is Anna's hot spot. There are new restaurants.\nLet me tell you what to order.\nJust trust me, you have to get this combo.\nIt's the Anna's Cookout combo.\nIt comes with loaded fries,\nwing and a smash burger or a fried chicken sandwich\nand you get all this for just $23.\nI chose the Retro Paradise Fries for my combo and they were so good,\nsurprisingly crispy for the amount of sauce that was on them.\nAnd you can pick whatever wing flavour you want.\nThese wings are huge. I got the Chipotle Ranch Blaze ones.\nThey were so good. And I got a double smash burger,\nwhich was definitely on the messy side.\nThis was my boyfriend's order.\nHe always thinks he orders better than me.\nSo comment down below who you think ordered better.\nHe got the hot shot wings\nand these were definitely more on the spicy side than mine.\nIf you like Buffalo style heat,\nthen these are perfect for you.\nHe got the vintage curry fries\nand he got the Killer Bee fried chicken sandwich.\nI fear that he did, in fact,\norder better than me. This sandwich was unreal.\nIt had this sweet honey glaze on that giant juicy Piece of chicken.\nIt was too. Oh, God.\nI also got their biscoff milkshake and it was very light,\nwhich I love. But if you guys go here and you don't get the tiramisu,\nI will personally be so offended.\nI didn't even wanna take a bite cause I was already so full.\nBut I could not stop eating this.\nIt was that good. It had a very balanced flavour.\nDefinitely check them out,\naddresses on the screen and I'll see you in the next food review.",
         "category": "food",
         "artist_name": null,
         "place_names": [
-            "Royal Ontario Museum",
-            "Royal Ontario Museum"
+            "Anna's Hot Spot"
         ],
         "addresses": [],
-        "enriched_address": "Royal Ontario Museum, 100, Queen's Park, University, University—Rosedale, Toronto, Golden Horseshoe, Ontario, M5S 2C6, Canada",
-        "enriched_place_name": "Royal Ontario Museum",
-        "latitude": 43.6676565,
-        "longitude": -79.3946988
-    },
-    {
-        "tiktok_id": "7629395562978168078",
-        "tiktok_url": "https://www.tiktok.com/@katseyeworld/video/7629395562978168078?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Indio, California, USA",
-        "original_text": "words alone could not explain everything we felt after our first-ever coachella performance 🥹 we can’t wait to see you all again tomorrow!! 🩷#KATSEYE",
-        "transcript": "",
-        "category": "music",
-        "artist_name": "KATSEYE",
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "Indio, Riverside County, California, United States",
-        "enriched_place_name": "KATSEYE",
-        "latitude": 33.7192808,
-        "longitude": -116.2188054
-    },
-    {
-        "tiktok_id": "7628089630679731487",
-        "tiktok_url": "https://www.tiktok.com/@ariaa496/video/7628089630679731487?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": "Indio, California, USA",
-        "original_text": "#fyp #coachella #swaelee #coachella2026 #music ",
-        "transcript": "Put your hands up. Bounce like this.\nBounce,\nbounce,\nbounce. Put your hands up.",
-        "category": "music",
-        "artist_name": "Swae Lee",
-        "place_names": [],
-        "addresses": [],
-        "enriched_address": "Indio, Riverside County, California, United States",
-        "enriched_place_name": "Swae Lee",
-        "latitude": 33.7192808,
-        "longitude": -116.2188054
+        "enriched_address": null,
+        "enriched_place_name": "Anna's Hot Spot",
+        "latitude": null,
+        "longitude": null
     },
     {
         "tiktok_id": "7310315141122231558",
@@ -418,31 +42,13 @@
         "category": "shopping",
         "artist_name": null,
         "place_names": [
-            "Arc Teryx",
-            "Yorkdale"
+            "Arc Teryx"
         ],
         "addresses": [],
         "enriched_address": "Yorkdale Shopping Centre, 3401, Dufferin Street, Yorkdale-Glen Park, Eglinton—Lawrence, North York, Toronto, Golden Horseshoe, Ontario, M6A 2T3, Canada",
         "enriched_place_name": "Arc Teryx",
         "latitude": 43.7256238,
         "longitude": -79.4523079
-    },
-    {
-        "tiktok_id": "7613199797478001951",
-        "tiktok_url": "https://www.tiktok.com/@theomarguillenshow/video/7613199797478001951?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
-        "detected_city": null,
-        "original_text": "Is @Urban Planet the MOST affordable clothing store in the mall? @Urban Planet X Charlotte Russe #urbanplanet #affordablefashion #mensfashion #mensclothing #affordableclothes ",
-        "transcript": "Go to the most affordable clothing store in the mall.\nUrban Planet. This used to be a Forever 21 rip.\nThis sale section goes crazy.\nFive dollar jerseys here and there.\nLook at all these sweaters.\nSummer's coming. They got the shorts for five bucks.\nFive dollar tees. I got a bunch of jorts right here for ten bucks.\nAnd a whole section with the ten dollar jeans.\nAll these shirts being $5 is absolutely insane.\nOkay, Urban Planet.\nThis makes me miss Forever 21.\nThis looks fire in here. They got some nice jerseys up here.\nAnything is possible if you're balling on a budget. Go to Urban Planet.",
-        "category": "shopping",
-        "artist_name": null,
-        "place_names": [
-            "Urban Planet"
-        ],
-        "addresses": [],
-        "enriched_address": "Urban Planet, 100, Bayshore Drive, Fairfield Heights, Bay, Nepean, Ottawa, Eastern Ontario, Ontario, K2B 6M7, Canada",
-        "enriched_place_name": "Urban Planet",
-        "latitude": 45.348067,
-        "longitude": -75.8046893
     },
     {
         "tiktok_id": "7450901995352886546",
@@ -453,8 +59,7 @@
         "category": "food",
         "artist_name": null,
         "place_names": [
-            "cactus club cafe",
-            "roy - a"
+            "cactus club cafe"
         ],
         "addresses": [],
         "enriched_address": "Cactus Club Cafe, The Queensway, Etobicoke City Centre, Etobicoke—Lakeshore, Etobicoke, Toronto, Golden Horseshoe, Ontario, M9C 5H5, Canada",
@@ -508,6 +113,123 @@
         "longitude": -84.3951173
     },
     {
+        "tiktok_id": "7613199797478001951",
+        "tiktok_url": "https://www.tiktok.com/@theomarguillenshow/video/7613199797478001951?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": null,
+        "original_text": "Is @Urban Planet the MOST affordable clothing store in the mall? @Urban Planet X Charlotte Russe #urbanplanet #affordablefashion #mensfashion #mensclothing #affordableclothes ",
+        "transcript": "Go to the most affordable clothing store in the mall.\nUrban Planet. This used to be a Forever 21 rip.\nThis sale section goes crazy.\nFive dollar jerseys here and there.\nLook at all these sweaters.\nSummer's coming. They got the shorts for five bucks.\nFive dollar tees. I got a bunch of jorts right here for ten bucks.\nAnd a whole section with the ten dollar jeans.\nAll these shirts being $5 is absolutely insane.\nOkay, Urban Planet.\nThis makes me miss Forever 21.\nThis looks fire in here. They got some nice jerseys up here.\nAnything is possible if you're balling on a budget. Go to Urban Planet.",
+        "category": "shopping",
+        "artist_name": null,
+        "place_names": [
+            "Urban Planet"
+        ],
+        "addresses": [],
+        "enriched_address": null,
+        "enriched_place_name": "Urban Planet",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "tiktok_id": "CjQ9kYRJdWv",
+        "tiktok_url": "https://www.instagram.com/reel/CjQ9kYRJdWv",
+        "detected_city": "Toronto",
+        "original_text": "205K likes, 451 comments - arjsun on October 3, 2022: \"My favourite spot for Toronto sunsets 💛\n\n#canada #explorecanada #mytinyatlas #toronto \n#bestvacations #beautifuldestinations #autumnaesthetic #fallvibes\". ",
+        "transcript": "",
+        "category": "unknown",
+        "artist_name": null,
+        "place_names": [],
+        "addresses": [],
+        "enriched_address": "Toronto, Ontario, Canada",
+        "enriched_place_name": null,
+        "latitude": 43.6532,
+        "longitude": -79.3832
+    },
+    {
+        "tiktok_id": "DYTQ3wwtDPs",
+        "tiktok_url": "https://www.instagram.com/reel/DYTQ3wwtDPs",
+        "detected_city": "Toronto",
+        "original_text": "4,471 likes, 59 comments - toronto_papi_ on May 13, 2026: \"Sunset Meetup. Sunday May 17 at 7:45 pm. Riverdale Park East.\". ",
+        "transcript": "",
+        "category": "nature",
+        "artist_name": null,
+        "place_names": [
+            "Riverdale Park"
+        ],
+        "addresses": [],
+        "enriched_address": "Riverdale Park East, Toronto—Danforth, Toronto, Golden Horseshoe, Ontario, Canada",
+        "enriched_place_name": "Riverdale Park",
+        "latitude": 43.6699259,
+        "longitude": -79.3552965
+    },
+    {
+        "tiktok_id": "CN59PhvhcpK",
+        "tiktok_url": "https://www.instagram.com/p/CN59PhvhcpK",
+        "detected_city": "Toronto",
+        "original_text": "2,673 likes, 15 comments - curiocitytoronto on April 20, 2021: \"Reason 1042 why we love this city: the view from Riverdale Park. What's on your plate tonight, Toronto? Photo by @toronto_papi_ #curiocitytoronto #toronto #riverdalepark\". ",
+        "transcript": "",
+        "category": "nature",
+        "artist_name": null,
+        "place_names": [
+            "Riverdale Park"
+        ],
+        "addresses": [],
+        "enriched_address": "Riverdale Park East, Toronto—Danforth, Toronto, Golden Horseshoe, Ontario, Canada",
+        "enriched_place_name": "Riverdale Park",
+        "latitude": 43.6699259,
+        "longitude": -79.3552965
+    },
+    {
+        "tiktok_id": "7544006025049885960",
+        "tiktok_url": "https://www.tiktok.com/@iamshobhit_tiktok/video/7544006025049885960?is_from_webapp=1&sender_device=pc",
+        "detected_city": "Toronto",
+        "original_text": "🍂 Edwards Gardens Waterfalls 🍂 A must-visit before winter arrives! ❄️✨ Nestled in the heart of Toronto, this spot feels like a hidden oasis—a place where you can wander, listen to the gentle falls, and escape the city rush. 🌿🌊 🚴 The best way to get here? Hop on the Don Valley bike trail or stroll your way through the park—it’s all easily mapped on Google. 📍 Along the way, you’ll discover some beautiful serene corners. 📸 If you’re searching for peaceful trails and picture-perfect landscapes, Edwards Gardens is the place to be before the snow covers it all. #EdwardsGardens #TorontoWaterfalls #TorontoNature #TorontoParks #ExploreToronto         Edwards Gardens, Edwards Gardens Waterfall, Toronto waterfalls, Toronto nature spots, Toronto parks, Don Valley bike trail, Toronto hidden gems, must visit Toronto, Toronto fall spots, waterfalls in Toronto",
+        "transcript": "",
+        "category": "nature",
+        "artist_name": null,
+        "place_names": [
+            "Edwards Gardens"
+        ],
+        "addresses": [],
+        "enriched_address": "Edwards Gardens, 755 Lawrence Ave E, Toronto, Ontario, M3C 1P2, Canada",
+        "enriched_place_name": "Edwards Gardens",
+        "latitude": 43.731,
+        "longitude": -79.3509
+    },
+    {
+        "tiktok_id": "7629395562978168078",
+        "tiktok_url": "https://www.tiktok.com/@katseyeworld/video/7629395562978168078?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Indio, California, USA",
+        "original_text": "words alone could not explain everything we felt after our first-ever coachella performance 🥹 we can’t wait to see you all again tomorrow!! 🩷#KATSEYE",
+        "transcript": "",
+        "category": "music",
+        "artist_name": "KATSEYE",
+        "place_names": [
+            "Katseyeworld"
+        ],
+        "addresses": [],
+        "enriched_address": "Indio, Riverside County, California, United States",
+        "enriched_place_name": "KATSEYE",
+        "latitude": 33.7192808,
+        "longitude": -116.2188054
+    },
+    {
+        "tiktok_id": "7628089630679731487",
+        "tiktok_url": "https://www.tiktok.com/@ariaa496/video/7628089630679731487?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Indio, California, USA",
+        "original_text": "#fyp #coachella #swaelee #coachella2026 #music ",
+        "transcript": "Put your hands up. Bounce like this.\nBounce,\nbounce,\nbounce. Put your hands up.",
+        "category": "music",
+        "artist_name": "Swae Lee",
+        "place_names": [
+            "Ariaa496"
+        ],
+        "addresses": [],
+        "enriched_address": "Indio, Riverside County, California, United States",
+        "enriched_place_name": "Swae Lee",
+        "latitude": 33.7192808,
+        "longitude": -116.2188054
+    },
+    {
         "tiktok_id": "7607180424351157517",
         "tiktok_url": "https://www.tiktok.com/@meetneatpgh/video/7607180424351157517?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
         "detected_city": "Toronto",
@@ -517,11 +239,15 @@
         "artist_name": null,
         "place_names": [
             "Toronto Zoo",
-            "The Toronto Zoo",
             "Now Toronto",
-            "Tundra Trek",
+            "The Toronto Zoo",
+            "The Toronto Zoo Toronto Zoo",
+            "Toronto Zoo 2000",
             "Meadowvale Rd",
-            "torontolife",
+            "Destination Toronto torontolife Now Toronto",
+            "Sn 8s SA",
+            "RSE Nag",
+            "Stal",
             "Toronto Ontario",
             "Visit Toronto",
             "See Toronto Now",
@@ -530,7 +256,110 @@
         "addresses": [],
         "enriched_address": "2000 Meadowvale Rd, Toronto, ON M1B 5K7, Canada",
         "enriched_place_name": "Toronto Zoo",
-        "latitude": 43.8229899,
-        "longitude": -79.1792324
+        "latitude": 43.8258685,
+        "longitude": -79.1827055
+    },
+    {
+        "tiktok_id": "7641410153631337735",
+        "tiktok_url": "https://www.tiktok.com/@arlenemunozisles/video/7641410153631337735?is_from_webapp=1&sender_device=pc",
+        "detected_city": "Toronto",
+        "original_text": "#tulips #spring #edwardsgardentoronto ",
+        "transcript": "",
+        "category": "nature",
+        "artist_name": null,
+        "place_names": [
+            "Edwards Gardens"
+        ],
+        "addresses": [],
+        "enriched_address": "Edwards Gardens, 755 Lawrence Ave E, Toronto, Ontario, M3C 1P2, Canada",
+        "enriched_place_name": "Edwards Gardens",
+        "latitude": 43.731,
+        "longitude": -79.3509
+    },
+    {
+        "tiktok_id": "DNVtfkJO8oG",
+        "tiktok_url": "https://www.instagram.com/reel/DNVtfkJO8oG",
+        "detected_city": "Mississauga",
+        "original_text": "7,835 likes, 62 comments - 16.priya.das on August 14, 2025: \"🇨🇦The ‘CNE’ kicks off this Friday! just one more day to go!✨\n\n🎡The Canadian National Exhibition, is Canada’s biggest annual fair and dates back almost 150 years.\n\n📍Location:\nToronto Exhibition Place\n100 Princes’ Blvd, Toronto, ON M6K 3C3\n\n🚨CNE Ticket Offers🚨\n\n⛳️ Opening Day Special – Admission is just $15 on August 15\n⛳️ Weeknight Deal – Only $13 Monday through Thursday after 5 pm\n⛳️ Monday Kids’ Offer – Children under 13 get in for just $2\n⛳️ Kids Go Free – Complimentary admission for ages 5–13 (limited-time pass)\n⛳️ PRESTO Perks – Save 17% on admission and 27% on Ride All Day wristbands\n⛳️ Bonus Entry – Show a Budweiser Stage or BMO Field event ticket for free admission\n\n💡approximately 1.5 million visitors attend each year, the CNE is Canada’s largest annual fair and the 6th largest in North America.\n\n💡The first Canadian National Exhibition took place in 1879\n\n💡The Canadian National Exhibition (CNE), also known as ‘The Exhibition’ or ‘The Ex’\n\n🗓️Date:\nAUGUST 15- SEPTEMBER 1, 2025\n\n🎟️Tickets are available online on the CNE official website - theex.com\nIG: @letsgototheex \n\n.\n.\n..\n.\n.\n.\n.\n.\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n#cne #theex #letsgototheex #canadianationalexhibition #labourday #fair #summerintoronto #ciasto #toronto #downtowntoronto #brampton #mississauga #canada #rides #yyz #cntower #midwayrides #scarborough #labourdayweekend  #torontoevents #cne2025 #cnefood\". ",
+        "transcript": "",
+        "category": "attractions",
+        "artist_name": null,
+        "place_names": [
+            "Canadian National Exhibition"
+        ],
+        "addresses": [],
+        "enriched_address": "Exhibition Place, Spadina—Fort York, Toronto, Golden Horseshoe, Ontario, M6K 3C3, Canada",
+        "enriched_place_name": "Canadian National Exhibition",
+        "latitude": 43.6335207,
+        "longitude": -79.4177242
+    },
+    {
+        "tiktok_id": "7398217160243350802",
+        "tiktok_url": "https://www.tiktok.com/@nature__world_travel/video/7398217160243350802?is_from_webapp=1&sender_device=pc",
+        "detected_city": "Chiapas, Mexico",
+        "original_text": "The Sumidero Canyon is located in the state of Chiapas, Mexico, and is one of the country’s main natural attractions, Mexico 🇲🇽  #Nature #NatureLovers #Nature_Perfection #Nature_Brilliance #NatureShots #NaturePhotography #View #World #Travel #DiscoverGlobe #NatureGeography #Traveler #ReelItFeelIt #Reels #Landscape #LandscapePhotography #LandscapeLovers #LandscapeHunter #Sky #Landscape_captures #Scenery #Fyp #Canyon #Chiapas #Attraction #Mexico #Summer #SummerVibes",
+        "transcript": "T minus 15 seconds,\n10, 9,\n8, 7, 6,\n5, 4,\n3, 2, 1.\nLift off. Crew is in orbit\ntraveling at nearly 17,000 miles.",
+        "category": "attractions",
+        "artist_name": null,
+        "place_names": [
+            "Cañón del Sumidero"
+        ],
+        "addresses": [],
+        "enriched_address": "Cañón del Sumidero, Chiapas, Mexico",
+        "enriched_place_name": "Cañón del Sumidero",
+        "latitude": 16.85,
+        "longitude": -93.0833
+    },
+    {
+        "tiktok_id": "7455145194824928517",
+        "tiktok_url": "https://www.tiktok.com/@heartz4_abbi/video/7455145194824928517?is_from_webapp=1&sender_device=pc&web_id=7635032930171848200",
+        "detected_city": "Toronto",
+        "original_text": "a day at the aquarium🫧⋆｡˚⋆𓆜 #aquaruimdate #aquarium #fyp #fypp #dailyvlogs #adayinmylife @R👀 ",
+        "transcript": "",
+        "category": "attractions",
+        "artist_name": null,
+        "place_names": [
+            "Ripley's Aquarium of Canada"
+        ],
+        "addresses": [],
+        "enriched_address": "288 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+        "enriched_place_name": "Ripley's Aquarium of Canada",
+        "latitude": 43.6424836,
+        "longitude": -79.3861266
+    },
+    {
+        "tiktok_id": "7550448070723521798",
+        "tiktok_url": "https://www.tiktok.com/@zhiadupitas/video/7550448070723521798?is_from_webapp=1&sender_device=pc",
+        "detected_city": "Toronto",
+        "original_text": "When in doubt, take your partner to an aquarium date. 🪸🪼🐠 #DateIdea #Toronto #RipleysAquarium #FYP #ThingsToDoInOntario ",
+        "transcript": "",
+        "category": "attractions",
+        "artist_name": null,
+        "place_names": [
+            "Ripley's Aquarium of Canada"
+        ],
+        "addresses": [],
+        "enriched_address": "288 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+        "enriched_place_name": "Ripley's Aquarium of Canada",
+        "latitude": 43.6424836,
+        "longitude": -79.3861266
+    },
+    {
+        "tiktok_id": "7528882689764576530",
+        "tiktok_url": "https://www.tiktok.com/@aafreenfatimaa/photo/7528882689764576530?is_from_webapp=1&sender_device=pc",
+        "detected_city": "Toronto",
+        "original_text": "Perfect weather for a chill picnic at Riverdale Park East! Accessible-  Bus and TTC will drop you right at the spot or around it so its easy to get by Food and Snacks- Multiple options in the area but if you’re budget - pack your snacks, food & drinks to go. The vibes are immaculate. Make sure to bring a picnic mat to sit on and enjoy the sunset.  Getting an icecream from the ice cream trucks at the end before we leave is our tradition now. (They usually accept cash/credit both) #fyp #foryou #summerinspo #torontosummer #sunsettoronto #riverdalepark #sunsetview ",
+        "transcript": "",
+        "category": "food",
+        "artist_name": null,
+        "place_names": [
+            "Riverdale Park East",
+            "food & drinks"
+        ],
+        "addresses": [],
+        "enriched_address": null,
+        "enriched_place_name": null,
+        "latitude": null,
+        "longitude": null
     }
 ]
